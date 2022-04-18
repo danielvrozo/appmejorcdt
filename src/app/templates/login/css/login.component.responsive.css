@@ -1,0 +1,140 @@
+#app-mejorcdt{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+div#section-login-mobile {
+    display: block;
+    width: -webkit-fill-available;
+    margin: 0% 5%;
+}
+
+div#login-content-mobile {
+    display: grid;
+}
+
+div#image-content-mobile {
+    width: 100%;
+    text-align: center;
+}
+
+div#image-content-mobile div img {
+    width: 55%;
+}
+
+div#title-login-mobile {
+    font-size: 30px;
+    font-weight: 900;
+    color: #142cb1;
+    text-align: center;
+    margin-top: 7%;
+}
+
+div#description-login-mobile {
+    text-align: center;
+    font-size: 14px;
+    padding: 0px 19%;
+    margin: 3% 0% 4%;
+}
+
+div#form-login-mobile {
+    margin: 5% 5% 2%;
+}
+
+div#form-mobile from {
+    width: 100%;
+}
+
+div#input-telphone-mobile input {
+    
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid #6c83ff;
+    box-shadow: 1px 1px 8px 1px rgb(0 0 0 / 25%);
+    color: #565656;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+div#input-telphone-mobile {
+    width: 100%;
+    margin: 0% 0% 5%;
+}
+
+div#button-form-mobile button {
+    background: #142cb1;
+    width: 100%;
+    color: white;
+    font-weight: 900;
+    border: 0px;
+    padding: 13px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px 1px rgb(0 0 0 / 25%);
+}
+
+div#button-form-mobile {
+    width: 100%;
+    margin: 10% 0% 0%;
+}
+
+div#info-copyrigth b {
+    color: #142cb1;
+}
+
+div#info-copyrigth {
+    margin-top: 12%;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
+
+.text-center input {
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+
+    div#label-input {
+        font-size: 17px;
+        font-weight: 900;
+        color: #142cb1;
+        margin-bottom: 2%;
+    }
+    
+    .alert-input-form {
+        width: 100%;
+        font-size: 15px;
+        padding-right: 7%;
+    }
+
+    .margin-left-alert {
+        margin-left: -130%;
+    }
+
+    div#alert_info_cdt {
+        position: fixed;
+        bottom: 1%;
+        left: 2%;
+        font-size: 12px;
+        width: 95%;
+        font-weight: 600;
+    }
+
+    #alert_info_cdt span {
+        background: white;
+        color: red;
+        right: 2%;
+        top: 13%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        display: grid;
+        align-content: center;
+        border-radius: 50px;
+    }
+}

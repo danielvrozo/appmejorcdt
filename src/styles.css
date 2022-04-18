@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+#app-mejorcdt{
+    height: -webkit-fill-available;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.input_national {
+    width: auto;
+    border: 2px solid #142cb1;
+    border-radius: 7px;
+    color: #142cb1!important;
+    font-weight: 700;
+    font-size: 25px;
+    transition: all 0.5s;
+}
+
+.sms_digit{
+    color: #1b41b1;
+}
+
+.sms_digit:focus-visible, .sms_digit:focus {
+    border: 2px solid #1b41b1!important;
+    outline: none;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" id="html-app-login">
+
+<head>
+    <meta charset="utf-8">
+    <title>Inicia sesion | mejorCDT</title>
+    <link rel="icon" href="assets/logo/MejorCDT_Icon_White-32x32.png" sizes="32x32">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="section-login">
+        <div id="section-login-flex">
+
+            <div id="login-form">
+                <div id="circle-image-left">
+                    <img src="assets/login/Iconos/circulo-small-left.svg">
+                </div>
+
+                <div id="circle-image-right">
+                    <img src="assets/login/Iconos/circulo-small-right.svg">
+                </div>
+
+
+                <div id="form-inputs">
+
+                    <form novalidate [formGroup]="Formulario_Celular_Codigo">
+                        <div id="title-form">
+                            Inicia sesi&oacute;n
+                        </div>
+
+                        <div *ngIf="AlertaMensaje" class="mb-4 alert-input-form">
+                            <div>
+                                <b>{{MensajeError}}.</b>
+                            </div>
+                        </div>
+
+                        <div *ngIf="Campo_Celular">
+                            <div #titulo_celular id="label-input" class="mb-1">
+                                <label>Escribe tu número de celular </label>
+                            </div>                          
+
+                            <div id="input-telphone" class="mb-2">
+                                <ngx-intl-tel-input 
+                                    [customPlaceholder]="'3006306922'"
+                                    #Campo_Celular
+                                    type="text"
+                                    id="telphone" 
+                                    formControlName="numero_celular" 
+                                    [cssClass]="'input_national py-2'" 
+                                    [searchCountryPlaceholder] = "'Países disponibles'"
+                                    [inputId]="'telphone'"
+                                    [onlyCountries]="onlyCounstries" 
+                                    [preferredCountries]="preferredCountries" 
+                                    [enableAutoCountrySelect]="true" 
+                                    [enablePlaceholder]="false" 
+                                    [searchCountryFlag]="true" 
+                                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                    [selectFirstCountry]="false" 
+                                    [selectedCountryISO]="CountryISO.Colombia"  
+                                    [maxLength]="15" 
+                                    [phoneValidation]="true" 
+                                    [separateDialCode]="true" 
+                                    [numberFormat]="PhoneNumberFormat.National" >
+                                </ngx-intl-tel-input>
+                                <input type="hidden" formControlName="key_app" value="portal_cdt">
+                            </div>
+
+                            <div id="info-code" class="mb-3">
+                                {{mensaje_ayuda}}
+                            </div>
+
+                            <div id="button-form">
+                                <button type="submit" class="btn-home-hover bgButtonTema" (click)="EnviarCodigo();">Enviar c&oacute;digo de verificaci&oacute;n</button>
+                            </div>
+
+                        </div>
+
+                        <div *ngIf="Campo_Codigo">
+                            <div #titulo_celular id="label-input" class="mb-3 lh-sm">
+                                <label>Ingresa el código de verificación, </label> <br/>
+                                <span class="text-secondary fw-light">que te enviamos por SMS a tu celular</span>
+                            </div>                          
+
+                            <div id="input-telphone" class="mb-1">
+                                <ng-otp-input  
+                                    (onInputChange)="CodigoFinal($event)" 
+                                    *ngIf="showOtpComponent" 
+                                    [config]="config"
+                                    #campoCelular
+                                    >
+                                </ng-otp-input>
+
+                                <input type="hidden" formControlName="key_app" value="portal_cdt">
+                            </div>
+
+                            <div id="info-code" class="mb-3">
+                                {{mensaje_ayuda}}
+                            </div>
+
+                            <div id="button-form">
+                                <button type="submit" class="btn-home-hover bgButtonTema" (click)="EnviarIngresarCodigo();">Ingresar</button>
+                            </div>
+
+                        </div>
+                
+                        
+
+                        <div id="info-politicas" style="cursor:pointer;" >
+                            <p>Consulta nuestra <b>politica de tratamientos de datos</b>.</p>
+                        </div>
+
+
+                    </form>
+                </div>
+
+
+                <div id="rectangulo-image-right">
+                    <img src="assets/login/Iconos/trianulo-small-rigth.svg">
+                </div>
+            </div>
+
+            <div id="login-image">
+                <div id="logo-image-right">
+                    <img src="assets/login/Iconos/logo.png">
+                </div>
+
+
+                <div id="desing-image-cuadrado">
+                    <img src="assets/login/Iconos/desing-image-cuadrado.svg">
+                </div>
+
+
+                <div id="circulo-cortado-image-left">
+                    <img src="assets/login/Iconos/circulo-cortado-image-left.svg">
+                </div>
+
+
+                <div id="circulo-center-image">
+                    <img src="assets/login/Iconos/circulo-image-center.svg">
+                </div>
+
+                <div id="persononas-image-mejorcdt">
+                    <img src="assets/login/Iconos/personas-usando-mejorcdt-2.svg">
+                </div>
+
+                <div id="triangulo-image-left">
+                    <img src="assets/login/Iconos/triangulo-image-left.svg">
+                </div>
+
+
+                <div id="circulo-bottom-cortado-image-right">
+                    <img src="assets/login/Iconos/circulo-image-right.svg">
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

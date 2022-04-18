@@ -1,0 +1,372 @@
+div#panel-user-mobile {
+    display: block;
+    background: white;
+    margin-top: 0vh;
+}
+
+
+div#panel-content-mobile {
+    display: grid;
+}
+
+div#panel-user-header {
+    background: #142cb1;
+    padding-bottom: 10%;
+}
+
+div#user-header-edit {
+    margin: 4% 4% 0% 0%;
+    text-align: right;
+    color: white;
+    font-size: 15px;
+}
+
+div#user-image-profile-responsive {
+    display: flex;
+    margin: 0% 5% 6% 10%;
+}
+
+div#user-image-responsive {
+    width: 30%;
+}
+
+div#user-image-responsive img {
+    width: 80px;
+    height: 80px;
+    background: #abb8ff;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+div#user-profile-responsive {
+    width: 70%;
+    align-self: center;
+    color: white;
+    margin: 0% 0% 0% 1%;
+}
+
+div#profile-name-responsive {
+    font-weight: 900;
+    font-size: 22px;
+}
+
+div#panel-user-cdt {
+    background: white;
+    margin: -11% 0% 0% 0%;
+    padding: 5% 5% 2%;
+    border-radius: 50px 50px 0px 0px;
+}
+
+div#user-cdt-inversion {
+    color: #636262;
+    font-weight: 800;
+    text-align: center;
+    font-size: 18px;
+}
+
+div#user-cdt-montoTotal {
+    text-align: center;
+    color: #142cb1;
+    font-size: 30px;
+    font-weight: 900;
+    margin: -2% 0% 2%;
+}
+
+div#user-cdts-abiertos-responsive {
+    margin: 4% 0%;
+    color: #636262;
+}
+
+div#cdt-abiertos-titles {
+    display: flex;
+    font-size: 14px;
+}
+
+div#title-cdt-alls {
+    font-weight: 800;
+    width: 50%;
+}
+
+div#title-cdts-number {
+    text-align: right;
+    width: 50%;
+    font-weight: 600;
+}
+
+div#title-cdts-number b {
+    color: #142cb1;
+}
+
+div#cdts-info-responsive {
+    box-shadow: 0px -1px 10px rgb(0 0 0 / 11%);
+    border-radius: 10px;
+    margin: 2% 0% 7%;
+    padding: 12px 0px 0px;
+}
+
+div#cdt-info-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 0px 10px;
+}
+
+div#cdt-info-bank {
+    width: 60%;
+    text-align: left;
+    display: flex;
+    margin-top: 0%;
+}
+
+div#cdt-logo-bank {
+    align-self: center;
+    padding: 7px;
+    background: #EDEDED;
+    border-radius: 8px;
+    width: max-content;
+}
+
+div#cdt-logo-bank img {
+    width: 40px;
+    height: 45px;
+    object-fit: contain;
+}
+
+div#cdt-details-bank {
+    width: 69%;
+    text-align: left;
+    margin-left: 3%;
+    place-self: center;
+}
+
+div#cdt-name-bank {
+    font-weight: 800;
+    font-size: 18px;
+}
+
+div#cdt-date-open-bank {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+div#cdt-date-open-bank b {
+    color: #142cb1;
+}
+
+div#cdt-info-amount-bank {
+    width: 40%;
+    text-align: right;
+    margin-top: 0%;
+}
+
+div#cdt-info-amount-price {
+    color: #142cb1;
+    font-weight: 900;
+    font-size: 18px;
+}
+
+div#cdt-info-date-expiration {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+div#cdt-info-date-expiration b {
+    color: #142cb1;
+}
+
+div#cdt-info-footer-responsive {
+    padding: 10px;
+    background: #142cb1;
+    border-radius: 0px 0px 10px 10px;
+    margin-top: 3%;
+    color: white;
+}
+
+div#cdt-faltan-days {
+    width: 39%;
+    text-align: left;
+    font-size: 14px;
+}
+
+div#cdt-recibiras font {
+    font-size: 14px;
+}
+
+div#cdt-recibiras{
+    width: 60%;
+    text-align: right;
+    font-size: 13px;
+}
+
+div#user-cdt-mss-info b {
+    color: #142cb1;
+}
+
+div#user-cdt-mss-info {
+    font-size: 13px;
+}
+
+div#user-cdt-nav-footer {
+    margin: 7% 0% 5%;
+    box-shadow: 0px -3px 20px 2px rgb(0 0 0 / 10%);
+    padding: 8px 10px;
+    border-radius: 15px;
+}
+
+div#user-nav-foo-flex {
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: center;
+}
+
+div#nav-foo-icon {
+    color: #142cb1;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.active {
+    background: #e6e9ff;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+#modalResponsiveHeader i {
+    font-size: 25px;
+    color: #7C7C7C;
+}
+
+div#modalResponsiveHeader h4 {
+    color: #7C7C7C;
+}
+
+div#modalResponsiveHeader {
+    border-bottom: 0px;
+}
+
+#modal-aval-responsive {
+    position: absolute;
+    top: 5%;
+    text-align: center;
+    width: 100%;
+}
+
+#modal-aval-responsive a {
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 15px;
+    color: #142cb1;
+}
+
+div#modal-info-cdt-config {
+    padding: 0% 5%;
+    margin: 5% 0% 2%;
+}
+
+div#info-config-title b, div#info-config-title i {
+    color: #142cb1;
+}
+div#info-config-title {
+    font-size: 17px;
+}
+
+div#info-config-msg {
+    font-size: 14px;
+    margin-top: 2%;
+    color: #000000;
+}
+
+div#info-config-msg a {
+    text-decoration: none;
+    color: #142cb1;
+    font-weight: bold;
+}
+
+div#title-info-cdt-date {
+    font-weight: 900;
+    color: #454545;
+    font-size: 18px;
+    padding: 2px;
+}
+
+div#box-cdt {
+    margin: 0% 0% 5%;
+}
+
+div#cdt-box-dateOp {
+    background: #142cb1;
+    color: white;
+    padding: 13px 23px 20px;
+    margin: 2% 0%;
+    border-radius: 15px;
+    line-height: 33px;
+    box-shadow: 0px -1px 18px rgb(0 0 0 / 25%);
+}
+
+#cdt-box-dateOp-2 {
+    background: #F3F3F3;
+    color: #444444;
+    padding: 13px 23px 20px;
+    margin: 2% 0%;
+    border-radius: 15px;
+    line-height: 33px;
+    box-shadow: 0px -1px 18px rgb(0 0 0 / 25%);
+    display: flex;
+    justify-content: space-between;
+}
+.mod-cdt-box{
+    background: #142cb1!important;
+    color: white!important;
+}
+
+div#box-dateOp-title {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+div#box-dateOp-info {
+    font-weight: 900;
+    font-size: 40px;
+}
+
+div#box-dateOp-title-2 {
+    font-weight: 800;
+    font-size: 17px;
+}
+
+div#box-dateOp-info-2 {
+    line-height: 21px;
+    font-size: 17px;
+}
+
+div#box-dateOp-info-2 b {
+    color: #142cb1;
+}
+
+.weigth-200 {
+    font-weight: 200!important;
+}
+
+.amount-size {
+    font-size: 35px;
+    font-weight: 900;
+}
+
+div#user-header-edit form button {
+    background: transparent;
+    border: 0px;
+    color: white;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+    div#alert_info_cdt {
+        z-index: 999999;
+        left: 2%;
+        width: 96%;
+        bottom: 1%;
+        font-size: 13px;
+        border-radius: 0px;
+    }
+}
