@@ -14,9 +14,8 @@ import { ModalComponent } from './modal/modal.component';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-
 import { NgOtpInputModule } from  'ng-otp-input';
-
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -37,7 +36,8 @@ import { NgOtpInputModule } from  'ng-otp-input';
     HttpClientModule,
     LayoutModule,
     NgxIntlTelInputModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    NgChartsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

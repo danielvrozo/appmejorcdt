@@ -1,803 +1,816 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-	<meta charset="utf-8">
-	<title>Panel de @name_user | mejorCDT</title>
-	<link rel="icon" href="assets/logo/MejorCDT_Icon_White-32x32.png" sizes="32x32">
+    <meta charset="utf-8">
+    <title>Panel de @name_user | mejorCDT</title>
+    <link rel="icon" href="assets/logo/MejorCDT_Icon_White-32x32.png" sizes="32x32">
     <script src="https://kit.fontawesome.com/749fcedd58.js" crossorigin="anonymous"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-	
-	<div #alert_mensaje id="alert_info_cdt" class="animation_slideIN"  *ngIf="alert_mensaje == true">
-		{{ mensajeTextAlert }}
-		<span (click)="close_mensaje()"> x </span>
-	</div>
 
-	<div id="panel-user" *ngIf="VersionDesktop">
-		<div id="panel-user-header-nav">
-			<div id="header-nav-flex">
-				<div id="header-nav-img">
-					<img src="assets/login/Iconos/logo.png">
-				</div>
+<body class="position-relative">
+    <div class="iconAsesor position-fixed rounded-circle shadow-lg" ngbTooltip="I am Bootstrap Tooltip" placement="left">
+        <img src="../../../assets/login/Iconos/images/AlejaAsesora.jpg" alt="" class="shadow-lg">
+    </div>
+    <div id="panel-user" *ngIf="VersionDesktop">
+        <div id="panel-user-header-nav">
+            <div id="header-nav-flex">
+                <div id="header-nav-img">
+                    <img src="assets/login/Iconos/logo.png">
+                </div>
 
-				<div id="header-nav-menu-flex">
-					<div id="link-nav">
-						INICIO
-					</div>
+                <div id="header-nav-menu-flex">
+                    <div id="link-nav">
+                        INICIO
+                    </div>
 
-					<div id="link-nav">
-						MIS BENEFICIOS <i class="fas fa-angle-down"></i> 
-					</div>
+                    <div id="link-nav">
+                        MIS BENEFICIOS <i class="fas fa-angle-down"></i>
+                    </div>
 
-					<div id="link-nav">
-						MEJORPLUS
-					</div>
-				</div>
+                    <div id="link-nav">
+                        MEJORPLUS
+                    </div>
+                </div>
 
-				<div id="header-nav-user-flex">
-					<div id="user-info">
-						<div id="user-info-name">
-							Hola, {{ fullname }}
-						</div>
+                <div id="header-nav-user-flex">
+                    <div id="user-info">
+                        <div id="user-info-name">
+                            Hola, Daniel
+                        </div>
 
-						<div id="user-level">
-							<b>Nivel {{ levelUser }}</b> | <i class="fas fa-coins"></i> <b class="puntaje-lvl" > {{ scoreUser }}</b>
-						</div>
-					</div>
+                        <div id="user-level">
+                            <b>Nivel 12</b> | <i class="fas fa-coins"></i> <b class="puntaje-lvl"> 350</b>
+                        </div>
+                    </div>
 
-					<div id="user-image">
-						<div>
-							<img src="{{ avatarUser }}">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                    <div id="user-image">
+                        <div>
+                            <img src="../../../assets/login/Iconos/images/item-animals/gray-wolf-svg.svg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-		<div id="panel-cdt">
+        <div id="panel-cdt">
 
-			<div id="contenido-nav-panel">
-				<a class="link-home">Inicio</a> <strong class="espacio-slash">/</strong> <strong class="color-gray"> tu panel mejorCDT</strong>
-			</div>
 
-			<div id="cdt-select-msj-prom" [@widthGrow]="state" *ngIf="MsjPromo"> 
+            <ng-template #mymodal let-modal>
 
-				<div id="msj-prom-clsoe" (click)="changeState()">
-					<i class="fas fa-times"></i>
-				</div>
-
-				<div id="msj-prom-flex">
-					<div id="prom-flex-icon">
-						<i class="fas fa-info"></i>
-					</div>
-
-					<div id="prom-flex-info">
-						<div id="prom-flex-title">
-							¡Comparte tu código <b class="puntaje-lvl">T5PPHN9D</b> con tus amigos y gana!
-						</div>
-
-						<div id="prom-flex-text">
-							Con su primer CDT ellos reciben 10% de comisión. Y tú acumulas puntos para subir de nivel, desbloquear premios, aumentar tu lorem impsun y obtener más beneficios con mejorCDT.
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<ng-template #mymodal let-modal>
-
-				<div class="modal-header">
-					<h4 class="modal-title" id="modal-basic-title">Revisa tu celu ;)</h4>
-					<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Revisa tu correo <i class="bi bi-envelope-exclamation"></i></h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 						<i class="fas fa-times"></i>
 					</button>
-				</div>
+                </div>
 
-				<form [formGroup]="codeVerForm" (ngSubmit)="onCodeVerification()" novalidate>
+                <form [formGroup]="codeVerForm" novalidate>
 
-					<div
-						*ngIf="
-							codeVerForm.controls['sns_code'].invalid &&
-							(codeVerForm.controls['sns_code'].dirty || codeVerForm.controls['sns_code'].touched) 
-							|| ValidatorFormCode == true
-						"
-						class="mb-4 alert-input-form">
-						<div *ngIf="codeVerForm.controls['sns_code'].errors?.required">
-							<b>¡Hey!, para continuar debes ingresar el código de verifiación.</b>
-								
-						</div>
+                    <div class="modal-body lh-1">
+                        <label for="" #titulo_celular_sms class="mb-0">Ingresa el código de verificación,</label> que te enviamos al e-mail registrado.
+                        <ng-otp-input class="mt-2" (onInputChange)="CodigoFinal($event)" *ngIf="showOtpComponent" [config]="config" #campoCelular>
+                        </ng-otp-input>
 
-								
-					</div>
+                    </div>
 
-					<div class="modal-body">
-						<label for="" #titulo_celular_sms>Escribe el código de verificación</label>
-						<input #input_sms type="text" class="form-control" placeholder="Puedes escribirlo aquí" formControlName="sns_code" > 
+                    <div class="modal-footer">
+                        <button type="submit" class="button-verification-code">Desbloquear valores ($)</button>
+                    </div>
 
-						<div class="alert alert-warning mb-4" *ngIf="errorStatus">
-							<p> {{ warnigMsg }} </p>
-						</div>
+                    <p class="max-width-app pt-2 pb-4 px-3 lh-1">
+                        Hemos enviado el código a <b class="b-name-title">danielv@gmail.com</b> Si ya no tienes acceso a este correo por favor comunícate con nuestra línea de servicio para validar tu identidad
+                    </p>
+                </form>
 
-						<div class="alert alert-success mb-4" *ngIf="succStatus" id="alert-success-codeVeri">
-							<p> {{ succMsg }} </p>
-						</div>
+            </ng-template>
 
-					</div>
+            <div id="contenedores-panel-cdt-flex">
+                <div id="contenido-userinfo">
 
-					<div class="modal-footer">
-						<button type="submit" class="button-verification-code">Verificar código</button>
-					</div>
-				</form>
-
-			</ng-template>
-			
-			<div id="contenedores-panel-cdt-flex">
-				<div id="contenido-userinfo">
-
-					<div id="user-info-perfil">
-						<div id="info-perfil-img-circle" class="">
-							<img src="assets/login/Iconos/circle-levels-user.svg">
-						</div>
+                    <div id="user-info-perfil">
+                        <div id="info-perfil-img-circle" class="">
+                            <img src="assets/login/Iconos/circle-levels-user.svg">
+                        </div>
 
 
-						<div id="info-perfil-cortador" class="divTop"></div>
-						<div id="info-perfil-img-start" class="position-top">
-							<img src="assets/login/Iconos/start-levels-user.svg">
-						</div>
+                        <div id="info-perfil-cortador" class="divTop"></div>
+                        <div id="info-perfil-img-start" class="position-top">
+                            <img src="assets/login/Iconos/start-levels-user.svg">
+                        </div>
 
-						
 
-						<div id="perfil-image">
-							<img src="{{ avatarUser }}">
-						</div>
 
-						<div id="perfil-name-tel">
-							<div id="perfil-name">
-								{{ fullname }}
-							</div>
+                        <div id="perfil-image">
+                            <img src="../../../assets/login/Iconos/images/item-animals/cheetah-svg.svg">
+                        </div>
 
-							<div id="perfil-tel">
-								{{ phoneUser }}
-							</div>
-						</div>
+                        <div id="perfil-name-tel">
+                            <div id="perfil-name">
+                                Daniel Vega
+                            </div>
 
-						<div id="perfil-comisiones">
-							<div id="comisiones-text">
-								Total invertido:  
+                            <div id="perfil-tel">
+                                +57 3006306922
+                            </div>
+                        </div>
 
-								<font *ngIf="AmountControlVisible == false">
-									{{ valueHiddenAmount }}
-								</font>
+                        <div id="perfil-comisiones">
+                            <div id="comisiones-text">
+                                Total invertido:
+                                <font class="fs-5">$15.000.000</font>
 
-								<font *ngIf="AmountControlVisible == true">
-									${{ separadorMiles(amountVisibileTotal) }}
-								</font>
+                            </div>
 
-								
-							</div>
+                            <div id="perfil-update-data">
+                                <a style="cursor:pointer;" class="fs-5">Tus datos</a>
+                            </div>
+                        </div>
 
-							<div id="perfil-update-data">
-								<a (click)="mensajeAlerta('Estamos trabajando en ello. Próximamente estará disponible esta función.', '#1f3ad2')" style="cursor:pointer;">Actualizar mis datos</a>
-							</div>
-						</div>
+                        <div id="info-perfil-cortador" class="divBottom"></div>
+                        <div id="info-perfil-img-start" class="position-bottom">
+                            <img src="assets/login/Iconos/start-levels-user.svg">
+                        </div>
+                    </div>
 
-						<div id="info-perfil-cortador" class="divBottom"></div>
-						<div id="info-perfil-img-start" class="position-bottom">
-							<img src="assets/login/Iconos/start-levels-user.svg">
-						</div>
-					</div>
+                    <div id="user-info-caja-separador">
+                        <div id="user-info-separador">
+                            <img src="assets/login/Iconos/triangulo-levels-user.svg">
+                        </div>
+                    </div>
 
-					<div id="user-info-caja-separador">
-						<div id="user-info-separador">
-							<img src="assets/login/Iconos/triangulo-levels-user.svg">
-						</div>
-					</div>
+                    <div id="user-info-levelnav">
+                        <div id="levelnav-lvl">
+                            <b>Nivel 12</b>
+                        </div>
 
-					<div id="user-info-levelnav">
-						<div id="levelnav-lvl">
-							<b>Nivel {{ levelUser }}</b>
-						</div>
+                        <div id="levelnav-puntos">
+                            <i class="fas fa-coins"></i> <b class="puntaje-lvl">350 puntos</b>
+                        </div>
+                    </div>
 
-						<div id="levelnav-puntos">
-							<i class="fas fa-coins"></i> <b class="puntaje-lvl">{{ scoreUser }} puntos</b>
-						</div>
-					</div>
+                    <div id="user-info-ganar-puntos">
 
-					<div id="user-info-ganar-puntos">
-						<div id="ganar-puntos-title">
-							Total CDT's vigentes
-						</div>
 
-						<div id="ganar-puntos-description" class="info-cdt-user">
-							Tienes  <b class="bg-number">{{ allCdtUser }}</b> cdt's abiertos
-						</div>
+                        <div id="ganar-puntos-title">
+                            Sacále el jugo a tu inversión
+                        </div>
 
-						<br/> 
-						
-						<div id="ganar-puntos-title">
-							¿C&oacute;mo ser un <b class="color-orange">crack</b> en mejorCDT Plus?
-						</div>
+                        <div id="ganar-puntos-description">
+                            Avanza en estas tareas para recibir m&aacute;s puntos extras y subir de nivel <b class="color-orange">;)</b>
+                        </div>
 
-						<div id="ganar-puntos-description">
-						    Avanza en estas tareas para recibir m&aacute;s puntos extras y subir de nivel <b class="color-orange">;)</b>
-						</div>
+                        <div id="ganar-puntos-items">
+                            <div id="icons">
+                                <i class="fas fa-circle"></i>
+                            </div>
 
-						<div id="ganar-puntos-items"> 
-							<div id="icons">
-								<i class="fas fa-circle"></i>
-							</div>
+                            <div id="text">
+                                Descarga el certificado de tu inversión
+                            </div>
+                        </div>
 
-							<div id="text">
-								Realiza otro CDT <font>(no importa el monto minito)</font>
-							</div>
-						</div>
+                        <div id="ganar-puntos-items">
+                            <div id="icons">
+                                <i class="fas fa-circle"></i>
+                            </div>
 
-						<div id="ganar-puntos-items">
-							<div id="icons">
-								<i class="fas fa-circle"></i>
-							</div>
+                            <div id="text">
+                                Configura una alerta para el vencimiento
+                            </div>
+                        </div>
 
-							<div id="text">
-								Invita a tus amigos con t&uacute; c&oacute;digo.
-							</div>
-						</div>
+                        <div id="ganar-puntos-items">
+                            <div id="icons">
+                                <i class="fas fa-circle"></i>
+                            </div>
 
-						<div id="ganar-puntos-items">
-							<div id="icons">
-								<i class="fas fa-circle"></i>
-							</div>
+                            <div id="text">
+                                Agrega dinero a tu inversión
+                            </div>
+                        </div>
 
-							<div id="text">
-								Obten m&aacute;s referidos a t&uacute; link personalizado.
-							</div>
-						</div>
+                        <div id="ganar-puntos-items">
+                            <div id="icons">
+                                <i class="fas fa-circle"></i>
+                            </div>
 
-						<div id="ganar-puntos-items">
-							<div id="icons">
-								<i class="fas fa-circle"></i>
-							</div>
+                            <div id="text">
+                                Abre un nuevo CDT
+                            </div>
+                        </div>
 
-							<div id="text">
-								Siguenos en redes sociales como @mejorcdt <font>(relax, aqu&iacute; estamos pilas de ti para subirte los puntos) </font>.
-							</div>
-						</div>
+                        <div id="ganar-puntos-items">
+                            <div id="icons">
+                                <i class="fas fa-circle"></i>
+                            </div>
 
-						<div id="user-info-bg-gray"></div>
+                            <div id="text">
+                                ¿Tienes dudas? Contacta a tu asesora financiera
+                            </div>
+                        </div>
 
-					</div>
+                        <div id="user-info-bg-gray"></div>
 
-					<div id="user-info-bg-gray-no"></div>
+                    </div>
 
-					<!-- <div id="user-info-activity">
-						<div id="activity-title">
-							T&uacute; actividad
-						</div>
+                    <div id="user-info-bg-gray-no"></div>
 
-						<div id="activity-description">
-							Aqu&iacute; abajo puedes ver los &uacute;ltimos movimientos que has hecho con MejorCDT 
-						</div>
+                </div>
 
-						<div id="activity-items">
-							<div id="title">Tienes <i class="fas fa-dollar-sign"></i>1.500 en comisiones ganados</div>
-							<font id="date">22/08/2021</font> <font id="puntaje-lvl">+100 puntos</font>
-						</div>
+                <div id="info-cdt-select">
 
-						<div id="activity-items">
-							<div id="title">Tienes 5 amigos nuevos que se han unido por medio de t&uacute; c&oacute;digo</div>
-							<font id="date">22/08/2021</font> <font id="puntaje-lvl">+210 puntos</font>
-						</div>
+                    <div id="cdt-select-title">
+                        Hola <b class="b-name-title">Daniel Vega</b>
+                    </div>
 
-						<div id="activity-items">
-							<div id="title">Tienes <i class="fas fa-dollar-sign"></i>1.500 en comisiones ganados</div>
-							<font id="date">22/08/2021</font> <font id="puntaje-lvl">+100 puntos</font>
-						</div>
-						
-					</div> -->
+                    <div id="cdt-select-subtitle">
+                        Para
+                        <font class="color-template fw-bold">proteger tu información</font>,hemos ocultado los valores de montos de inversión. Tranquilo, si quieres verlos sólo necesitamos hacer una segunda verificacion con un código que enviaremos a tu e-mail registrado.
 
-				</div>
+                        <form action="">
+                            <button type="submit" (click)="open(mymodal)">Enviar código de verificación</button>
+                        </form>
+                    </div>
 
-				<div id="info-cdt-select">
-					
-					<div id="cdt-select-title">
-						Hola <b class="b-name-title">{{ fullname }}</b>
-					</div>
+                    <div id="cdt-select-resumen">
+                        <div id="select-resumen-flex">
 
-					<div id="cdt-select-subtitle" *ngIf="msgCodeVerification">
-						Para <font class="color-template"> proteger tu información</font>, hemos ocultado los valores de montos de inversión. 
-						Pero <font class="color-template"> tranquilo</font>, si quieres verlos solo necesitamos hacer 
-						una <font class="color-template">segunda verificación con un código a tu celular</font>.
+                            <div id="resumen-cdt-info">
 
-						<form action="" (ngSubmit)="onVerification()">
-							<button type="submit" (click)="open(mymodal)">Enviar código de verificación</button>
-						</form>
-					</div>
+                                <div id="cdt-user-vigents">
 
-					<div id="cdt-select-resumen">
-						<div id="select-resumen-flex">
+                                    <div class="row align-items-end mb-4">
+                                        <div class="col-6 ps-0">
+                                            <span class="b-name-title fs-5 fw-bold">Tienes <b class="colorBtnHome text-white py-1 px-2 rounded-3">2</b> inversiones activas</span>
+                                        </div>
+                                        <div class="col-6 pe-0 text-end">
+                                            <button class="btn colorBtnHome px-4 py-2 text-white fw-bold rounded-3 shadow-sm fs-6">
+												<i class="fa fa-plus" aria-hidden="true"></i> Abrir un nuevo CDT
+											</button>
+                                        </div>
+                                    </div>
+                                    <div id="cdt-user-content">
+                                        <div id="cdt-user-details">
+                                            <div id="cdt-user-details-flex">
 
-							<div id="resumen-cdt-info" >
-								
-								<div id="cdt-user-vigents" *ngFor="let cdt of user.cdts; let i of infoUserVisible.cdts">
-								
-									<div id="cdt-user-content">
-										<div id="cdt-user-details">
-											<div id="cdt-user-details-flex">
-								
-												<div id="cdt-detail-bank-amount">
-													<div id="cdt-bank-logo">
-														<img src="https://mejorcdt.com/wp-content/uploads/2021/02/Credifinanciera.png">
-													</div>
+                                                <div id="cdt-detail-bank-amount">
+                                                    <div id="cdt-bank-logo">
+                                                        <img src="https://mejorcdt.com/wp-content/uploads/2021/02/Credifinanciera.png">
+                                                    </div>
 
-													<div id="cdt-amount-value"  *ngIf="AmountControlVisible == false">
-														{{ valueHiddenAmount }}
-													</div>
-					
-													<div id="cdt-amount-value"  *ngIf="AmountControlVisible == true">
-														${{ separadorMiles(i.amount) }}
-														
-													</div>
-													
-												</div>
-								
-								
-												<div id="cdt-detail-aval">
-													<div id="cdt-detail-aval-flex">
-								
-														<div id="cdt-aval-groups">
-															<div id="cdt-aval-groups-ttile">
-																Lo abriste
-															</div>
-															<div id="cdt-aval-groups-value">
-																{{ FechaLetras(cdt.date_open, 1) }} de 
-																<font class="groups-value-weigth">{{ FechaLetras(cdt.date_open, 2) }}</font> 
-																de {{ FechaLetras(cdt.date_open, 3) }}
-															</div>
-														</div>
-								
-														<div id="cdt-aval-groups">
-															<div id="cdt-aval-groups-ttile">
-																Se vence
-															</div>
-															<div id="cdt-aval-groups-value">
-																{{ FechaLetras(cdt.date_expiration, 1) }} de 
-																<font class="groups-value-weigth">{{ FechaLetras(cdt.date_expiration, 2) }}</font> 
-																de {{ FechaLetras(cdt.date_expiration, 3) }}
-															</div>
-														</div>
-								
-														<div id="cdt-aval-groups">
-															<div id="cdt-aval-groups-ttile">
-																Plazo
-															</div>
-															<div id="cdt-aval-groups-value">
-																<font class="groups-value-weigth">{{ cdt.term }}</font> días
-															</div>
-														</div>
-								
-														<div id="cdt-aval-groups" class="margin-0">
-															<div id="cdt-aval-groups-ttile">
-																Tasa
-															</div>
-															<div id="cdt-aval-groups-value">
-																{{ cdt.rate }} %
-															</div>
-														</div>
-								
-								
-													</div>
-												</div>
-								
-												<div id="cdt-detail-download">
+                                                    <div id="cdt-amount-value">
+                                                        $15.000.000
+                                                    </div>
 
-													<div id="cdt-download-button"  *ngIf="AmountControlVisible == true">
-														
-														<font (click)="sendDecevalApi(cdt.cdt_id)" id="cdt_id_{{cdt.cdt_id}}">
-															<a>
-																<button> Descargar Deceval </button> 
-															</a>
-														</font>
-														
-													</div>
-								
-													<div id="cdt-download-config">
-														Aún no haz configurado cómo quieres retirar tu dinero. <a (click)="mensajeAlerta('Estamos trabajando en ello. Próximamente estará disponible esta función.', '#1f3ad2')" style="cursor:pointer;">Haz clic aquí</a> 
-													</div>
-												</div>
-								
-											</div>
-								
-											<div id="cdt-user-detail-footer">
-												<div id="cdt-footer-flex">
-													<div id="cdt-footer-timeExp">
-														<i class="far fa-clock"></i> Faltan: <font class="cdt-footer-weigth"> {{ moment(cdt.date_expiration).diff(fechaActual, 'days') }} días</font>
-													</div>
-								
-													<div id="cdt-footer-total">
-														<i class="far fa-credit-card"></i> Al final recibirás 
-														
-														
-														<font class="cdt-footer-weigth" *ngIf="cdtSumAmount == 0">
-															{{ valueHiddenAmount }}
-														</font>
-													
-														<font class="cdt-footer-weigth"  *ngIf="cdtSumIf == true">
-															${{ separadorMiles(gananciasRoi(i.amount, i.roi))  }}
-														</font>
+                                                </div>
 
-													</div>
-								
-												</div>
-											</div>
-											
-										</div>
-									</div>
-																	
-								
-								</div>
 
-							</div>						
+                                                <div id="cdt-detail-aval">
+                                                    <div id="cdt-detail-aval-flex">
 
-						</div>
-									
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                                        <div id="cdt-aval-groups">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Lo abriste
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                12 de
+                                                                <font class="groups-value-weigth">Abril</font>
+                                                                de 2022
+                                                            </div>
+                                                        </div>
 
-	
-	<div id="panel-user-mobile" *ngIf="VersionMobile">
+                                                        <div id="cdt-aval-groups">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Se vence
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                12 de
+                                                                <font class="groups-value-weigth">Abril</font>
+                                                                de 2022
+                                                            </div>
+                                                        </div>
 
-		<ng-template #mymodal let-modal>
+                                                        <div id="cdt-aval-groups">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Plazo
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                <font class="groups-value-weigth">12</font> días
+                                                            </div>
+                                                        </div>
 
-			<div class="modal-header">
-				<h4 class="modal-title" id="modal-basic-title">Revisa tu celu ;)</h4>
-				<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                        <div id="cdt-aval-groups" class="margin-0">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Tasa
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                7%
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div id="cdt-detail-download">
+
+                                                    <div id="cdt-download-button">
+
+                                                        <font>
+                                                            <a>
+                                                                <button> Descargar Deceval </button>
+                                                            </a>
+                                                        </font>
+
+                                                    </div>
+
+                                                    <div id="cdt-download-config">
+                                                        Aún no haz configurado cómo quieres retirar tu dinero. <a style="cursor:pointer;">Haz clic aquí</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div id="cdt-user-detail-footer" class="p-0">
+                                                <div id="cdt-footer-flex" class="row align-items-center p-3">
+                                                    <div id="" class="fs-4 col-3 ps-0 text-start">
+                                                        <i class="far fa-clock"></i> Faltan:
+                                                        <font class="cdt-footer-weigth">17 días</font>
+                                                    </div>
+
+                                                    <div class="fs-5 col-3 ps-0 text-end">
+                                                        <i class="bi bi-alarm"></i> Configurar alerta
+                                                    </div>
+
+                                                    <div class="col-6 text-end pe-0">
+                                                        <i class="fs-5 fas fa-coins puntaje-lvl"></i> Al final recibirás
+
+                                                        <font class="cdt-footer-weigth fs-4 ps-2">
+                                                            <b class="puntaje-lvl">$10.000.000</b>
+                                                        </font>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row bg-white px-3">
+                                                    <div class="col-10 ps-0">
+                                                        <div class="chart-wrapper">
+                                                            <canvas baseChart [data]="salesData" [type]="'line'" [options]="chartOptions"></canvas>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-2 pe-0">
+                                                        hola
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="cdt-user-content">
+                                        <div id="cdt-user-details">
+                                            <div id="cdt-user-details-flex">
+
+                                                <div id="cdt-detail-bank-amount">
+                                                    <div id="cdt-bank-logo">
+                                                        <img src="https://mejorcdt.com/wp-content/uploads/2021/02/Credifinanciera.png">
+                                                    </div>
+
+                                                    <div id="cdt-amount-value">
+                                                        $15.000.000
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div id="cdt-detail-aval">
+                                                    <div id="cdt-detail-aval-flex">
+
+                                                        <div id="cdt-aval-groups">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Lo abriste
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                12 de
+                                                                <font class="groups-value-weigth">Abril</font>
+                                                                de 2022
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="cdt-aval-groups">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Se vence
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                12 de
+                                                                <font class="groups-value-weigth">Abril</font>
+                                                                de 2022
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="cdt-aval-groups">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Plazo
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                <font class="groups-value-weigth">12</font> días
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="cdt-aval-groups" class="margin-0">
+                                                            <div id="cdt-aval-groups-ttile">
+                                                                Tasa
+                                                            </div>
+                                                            <div id="cdt-aval-groups-value">
+                                                                7%
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div id="cdt-detail-download">
+
+                                                    <div id="cdt-download-button">
+
+                                                        <font>
+                                                            <a>
+                                                                <button> Descargar Deceval </button>
+                                                            </a>
+                                                        </font>
+
+                                                    </div>
+
+                                                    <div id="cdt-download-config">
+                                                        Aún no haz configurado cómo quieres retirar tu dinero. <a style="cursor:pointer;">Haz clic aquí</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div id="cdt-user-detail-footer">
+                                                <div id="cdt-footer-flex">
+                                                    <div id="cdt-footer-timeExp">
+                                                        <i class="far fa-clock"></i> Faltan:
+                                                        <font class="cdt-footer-weigth">17 días</font>
+                                                    </div>
+
+                                                    <div id="cdt-footer-total">
+                                                        <i class="far fa-credit-card"></i> Al final recibirás
+
+                                                        <font class="cdt-footer-weigth">
+                                                            $10.000.000
+                                                        </font>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="panel-user-mobile" *ngIf="VersionMobile">
+
+        <ng-template #mymodal let-modal>
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Revisa tu celu ;)</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 					<i class="fas fa-times"></i>
 				</button>
-			</div>
+            </div>
 
-			<form [formGroup]="codeVerForm" (ngSubmit)="onCodeVerification()">
-				<div class="modal-body">
-					<label for="">Escribe el código de verificación</label>
-					<input type="text" class="form-control" placeholder="Puedes escribirlo aquí" formControlName="sns_code" > 
+            <form [formGroup]="codeVerForm">
+                <div class="modal-body">
+                    <label for="">Escribe el código de verificación</label>
+                    <input type="text" class="form-control" placeholder="Puedes escribirlo aquí" formControlName="sns_code">
+                </div>
 
-					<div class="alert alert-warning mb-4" *ngIf="errorStatus">
-						<p> {{ warnigMsg }} </p>
-					</div>
+                <div class="modal-footer">
+                    <button type="submit" class="button-verification-code">Verificar código</button>
+                </div>
+            </form>
 
-					<div class="alert alert-success mb-4" *ngIf="succStatus" id="alert-success-codeVeri">
-						<p> {{ succMsg }} </p>
-					</div>
-
-				</div>
-
-				<div class="modal-footer">
-					<button type="submit" class="button-verification-code">Verificar código</button>
-				</div>
-			</form>
-
-		</ng-template>
+        </ng-template>
 
 
-		<ng-template #mymodalCDT let-modal>
+        <ng-template #mymodalCDT let-modal>
 
-			<div class="modal-header" id="modalResponsiveHeader">
-				<i class="fas fa-long-arrow-alt-left" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
-				<h4 class="modal-title" id="modal-basic-title">
-					 CDT {{ nameCDTid }} 
-				</h4>
-				<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <div class="modal-header" id="modalResponsiveHeader">
+                <i class="fas fa-long-arrow-alt-left" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
+                <h4 class="modal-title" id="modal-basic-title">
+
+                </h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 					<i class="fas fa-times"></i>
 				</button>
-			</div>
+            </div>
 
-			<div id="modal-aval-responsive">
-				
-				<a href="{{ avalID }}">Descargar aval</a>
-			</div>
+            <div id="modal-aval-responsive">
 
-			<div id="modal-info-cdt-config">
-				<div id="info-config-title">
-					<i class="fas fa-exclamation-circle"></i> ¡Hey <b>tú!</b>
-				</div>
-				<div id="info-config-msg">
-					Aún no haz configurado cómo quieres retirar tu dinero. 
-					<a (click)="mensajeAlerta('Estamos trabajando en ello. Próximamente estará disponible esta función.', '#1f3ad2')">Haz clic aquí y configuralo.</a> 
-				</div>
-			</div>
+                <a href="">Descargar aval</a>
+            </div>
 
-			<div class="modal-body">
+            <div id="modal-info-cdt-config">
+                <div id="info-config-title">
+                    <i class="fas fa-exclamation-circle"></i> ¡Hey <b>tú!</b>
+                </div>
+                <div id="info-config-msg">
+                    Aún no haz configurado cómo quieres retirar tu dinero.
+                    <a>Haz clic aquí y configuralo.</a>
+                </div>
+            </div>
 
-				<div id="box-cdt">
-					<div id="title-info-cdt-date">
-						A tú cdt le quedan
-					</div>
-	
-					<div id="cdt-box-dateOp">
-						<div id="box-dateOp-title">
-							Te faltan:
-						</div>
-	
-						<div id="box-dateOp-info">
-							{{ moment(dateExpirationnID).diff(fechaActual, 'days') }} días
-						</div>
-					</div>
-				</div>
+            <div class="modal-body">
 
-				<div id="box-cdt">
-					<div id="title-info-cdt-date">
-						En cuestiones de fecha
-					</div>
-	
-					<div id="cdt-box-dateOp-2">
-						<div id="cdt-box-col">
-							<div id="box-dateOp-title-2">
-								Lo abriste
-							</div>
-		
-							<div id="box-dateOp-info-2">
-								{{ FechaLetras(dateOpenID, 1) }} de <b> 
-									<font class="groups-value-weigth">{{ FechaLetras(dateOpenID, 2) }}</font> 
-									de {{ FechaLetras(dateOpenID, 3) }} </b>
-							</div>
-						</div>
+                <div id="box-cdt">
+                    <div id="title-info-cdt-date">
+                        A tú cdt le quedan
+                    </div>
 
-						<div id="cdt-box-col" style="text-align: right;">
-							<div id="box-dateOp-title-2">
-								Se vence
-							</div>
-		
-							<div id="box-dateOp-info-2">
-								{{ FechaLetras(dateExpirationnID, 1) }} de <b> 
-									<font class="groups-value-weigth">{{ FechaLetras(dateExpirationnID, 2) }}</font> 
-									de {{ FechaLetras(dateExpirationnID, 3) }} </b>
-							</div>
-						</div>
-						
-						
-					</div>
-				</div>
+                    <div id="cdt-box-dateOp">
+                        <div id="box-dateOp-title">
+                            Te faltan:
+                        </div>
+
+                        <div id="box-dateOp-info">
+                            13 días
+                        </div>
+                    </div>
+                </div>
+
+                <div id="box-cdt">
+                    <div id="title-info-cdt-date">
+                        En cuestiones de fecha
+                    </div>
+
+                    <div id="cdt-box-dateOp-2">
+                        <div id="cdt-box-col">
+                            <div id="box-dateOp-title-2">
+                                Lo abriste
+                            </div>
+
+                            <div id="box-dateOp-info-2">
+                                13 de <b> 
+									<font class="groups-value-weigth">Ago</font> 
+									de 2022 </b>
+                            </div>
+                        </div>
+
+                        <div id="cdt-box-col" style="text-align: right;">
+                            <div id="box-dateOp-title-2">
+                                Se vence
+                            </div>
+
+                            <div id="box-dateOp-info-2">
+                                13 de <b> 
+									<font class="groups-value-weigth">Ago</font> 
+									de 2032 </b>
+                            </div>
+                        </div>
 
 
-				<div id="box-cdt">
-					<div id="title-info-cdt-date">
-						Y así empezó, y así terminará
-					</div>
-	
-					<div id="cdt-box-dateOp-2" class="mod-cdt-box">
-						<div id="cdt-box-col">
-							<div id="box-dateOp-title-2" class="weigth-200">
-								Invertiste
-							</div>
-		
-							<div id="box-dateOp-info-2">
-								<div *ngIf="cdtSumAmount == 0">
-									{{ valueHiddenAmount }}
-								</div>
-							
-								<div  *ngIf="cdtSumIf == true" class="amount-size">
-									${{ convertNumberToShortString(amountID, 1) }}
-								</div>
-							</div>
-						</div>
+                    </div>
+                </div>
 
-						<div id="cdt-box-col" style="text-align: right;">
-							<div id="box-dateOp-title-2" class="weigth-200">
-								Recibirás
-							</div>
-		
-							<div id="box-dateOp-info-2">
-								<font class="cdt-footer-weigth" *ngIf="cdtSumAmount == 0">
-									{{ valueHiddenAmount }}
-								</font>
-												
-								<font class="cdt-footer-weigth"  *ngIf="cdtSumIf == true" class="amount-size">
-									${{ convertNumberToShortString(gananciasRoi(amountID, roiGananciaID), 2)  }}
-								</font>
-							</div>
-						</div>
-						
-						
-					</div>
-				</div>
 
-				<div id="box-cdt">
-					<div id="title-info-cdt-date">
-						Y le tiraste al
-					</div>
-	
-					<div id="cdt-box-dateOp-2">
-						<div id="cdt-box-col">
-							<div id="box-dateOp-title-2">
-								Plazo de
-							</div>
-		
-							<div id="box-dateOp-info-2">
-								<b  class="amount-size"> {{ plazoID }} </b> <font>días</font>
-							</div>
-						</div>
+                <div id="box-cdt">
+                    <div id="title-info-cdt-date">
+                        Y así empezó, y así terminará
+                    </div>
 
-						<div id="cdt-box-col" style="text-align: right;">
-							<div id="box-dateOp-title-2">
-								Tasa de
-							</div>
-		
-							<div id="box-dateOp-info-2">
-								<b  class="amount-size"> {{ rateID }}% </b> 
-							</div>
-						</div>
-						
-						
-					</div>
-				</div>
+                    <div id="cdt-box-dateOp-2" class="mod-cdt-box">
+                        <div id="cdt-box-col">
+                            <div id="box-dateOp-title-2" class="weigth-200">
+                                Invertiste
+                            </div>
 
-				<div id="user-cdt-mss-info">
-					<b>¿Problemas con la plataforma?</b> Escribenos a <br/> info@mejorcdt.com y reportanos el fallo.
-				</div>
-				
-			</div>
+                            <div id="box-dateOp-info-2">
+                                <font class="cdt-footer-weigth">
+                                    $10.000.000
+                                </font>
+                            </div>
+                        </div>
 
-			<div class="modal-footer">
-				<button style="padding: 15px 0px" type="submit" class="button-verification-code" (click)="sendDecevalApi(id_CDT_Responsive)" id="cdt_id_{{id_CDT_Responsive}}">
+                        <div id="cdt-box-col" style="text-align: right;">
+                            <div id="box-dateOp-title-2" class="weigth-200">
+                                Recibirás
+                            </div>
+
+                            <div id="box-dateOp-info-2">
+                                <font class="cdt-footer-weigth">
+                                    $10.000.000
+                                </font>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div id="box-cdt">
+                    <div id="title-info-cdt-date">
+                        Y le tiraste al
+                    </div>
+
+                    <div id="cdt-box-dateOp-2">
+                        <div id="cdt-box-col">
+                            <div id="box-dateOp-title-2">
+                                Plazo de
+                            </div>
+
+                            <div id="box-dateOp-info-2">
+                                <b class="amount-size"> 12 </b>
+                                <font>días</font>
+                            </div>
+                        </div>
+
+                        <div id="cdt-box-col" style="text-align: right;">
+                            <div id="box-dateOp-title-2">
+                                Tasa de
+                            </div>
+
+                            <div id="box-dateOp-info-2">
+                                <b class="amount-size"> 7% </b>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div id="user-cdt-mss-info">
+                    <b>¿Problemas con la plataforma?</b> Escribenos a <br/> info@mejorcdt.com y reportanos el fallo.
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button style="padding: 15px 0px" type="submit" class="button-verification-code" id="cdt_id_">
 					<a style="color:white; text-decoration: none;" target="_blank">	Descargar aval del cdt </a>
 				</button>
-			</div>
-				
-		
-
-		</ng-template>
-
-		<div id="panel-content-mobile">
-			<div id="panel-user-header">
-				<div id="user-header-edit" (click)="open(mymodal)">
-					<form action="" (ngSubmit)="onVerification()" *ngIf="msgCodeVerification">
-						<button type="submit">Desbloquea <i class="fas fa-user-lock"></i></button>
-					</form>
-				</div>
+            </div>
 
 
-				<div id="user-image-profile-responsive">
-					<div id="user-image-responsive">
-						<img src="{{avatarUser}}" alt="">
-					</div>
 
-					<div id="user-profile-responsive">
-						<div id="profile-welcome-responsive">
-							Bienvenid@ <b>;)</b>
-						</div>
+        </ng-template>
 
-						<div id="profile-name-responsive">
-							¡Hola {{ fullname }}!
-						</div>
-					</div>
-				</div>
-			</div>
+        <div id="panel-content-mobile">
+            <div id="panel-user-header">
+                <div id="user-header-edit">
+                    <form action="">
+                        <button type="submit">Desbloquea <i class="fas fa-user-lock"></i></button>
+                    </form>
+                </div>
 
 
-			<div id="panel-user-cdt">
-				<div id="user-cdt-inversion">
-					Has invertido ;)
-				</div>
+                <div id="user-image-profile-responsive">
+                    <div id="user-image-responsive">
+                        <img src="../../../assets/login/Iconos/images/item-animals/lesser-svg.svg" alt="">
+                    </div>
 
-				<div id="user-cdt-montoTotal">
-					<font *ngIf="AmountControlVisible == false">
-						{{ valueHiddenAmount }}
-					</font>
+                    <div id="user-profile-responsive">
+                        <div id="profile-welcome-responsive">
+                            Bienvenid@ <b>;)</b>
+                        </div>
 
-					<font *ngIf="AmountControlVisible == true">
-						${{ separadorMiles(amountVisibileTotal) }}
-					</font>
-				</div>
-
-
-				<div id="user-cdts-abiertos-responsive">
-					<div id="cdt-abiertos-titles">
-						<div id="title-cdt-alls">
-							Tus cdt's abiertos
-						</div>
-
-						<div id="title-cdts-number">
-							<b>{{ allCdtUser }} cdt's</b> abiertos
-						</div>
-					</div>
-					
-
-					<div id="cdts-info-responsive" *ngFor="let cdt of user.cdts;  let i of infoUserVisible.cdts" (click)="openCDT(mymodalCDT, cdt.id )">
-
-						<div id="cdt-info-header">
-							<div id="cdt-info-bank">
-								<div id="cdt-logo-bank">
-									
-									<img src="assets/mobile/images/{{ cdt.bank }}.png" alt="">
-								</div>
-
-								<div id="cdt-details-bank"> 
-									<div id="cdt-name-bank">
-										{{ cdt.bank }}
-									</div>
-
-									<div id="cdt-date-open-bank">
-										Lo abriste <b>{{ FechaLetras(cdt.date_open, 1) }} de 
-										<font class="groups-value-weigth">{{ FechaLetras(cdt.date_open, 2) }}</font> 
-										de {{ FechaLetras(cdt.date_open, 3) }} </b>
-									</div>
-								</div>
-
-								
-							</div>
-
-							<div id="cdt-info-amount-bank">
-								<div id="cdt-info-amount-price">
-
-									<div *ngIf="AmountControlVisible == false">
-										{{ valueHiddenAmount }}
-									</div>
-	
-									<div *ngIf="AmountControlVisible == true">
-										${{ convertNumberToShortString(i.amount, 1) }}
-										
-									</div>
-
-									
-								</div>
-
-								<div id="cdt-info-date-expiration">
-									Se vence <b>{{ FechaLetras(cdt.date_expiration, 1) }} de 
-									<font class="groups-value-weigth">{{ FechaLetras(cdt.date_expiration, 2) }}</font> 
-									de {{ FechaLetras(cdt.date_expiration, 3) }} </b>
-								</div> 
-							</div>
-						</div>
-
-						<div id="cdt-info-footer-responsive">
-							<div id="cdt-footer-flex">
-								<div id="cdt-faltan-days">
-									<i class="far fa-clock"></i> Faltan: <font class="cdt-footer-weigth"> {{ moment(cdt.date_expiration).diff(fechaActual, 'days') }} días</font>
-								</div>
-
-								<div id="cdt-recibiras">
-									<i class="far fa-credit-card"></i> Recibirás: 		
-									<font class="cdt-footer-weigth" *ngIf="cdtSumAmount == 0">
-										{{ valueHiddenAmount }}
-									</font>
-													
-									<font class="cdt-footer-weigth"  *ngIf="cdtSumIf == true">
-										${{ convertNumberToShortString(gananciasRoi(i.amount, i.roi), 2)  }}
-									</font>
-								</div>
-							</div>
-						</div>
-					</div>
+                        <div id="profile-name-responsive">
+                            ¡Hola Daniel Vega!
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-				</div>
+            <div id="panel-user-cdt">
+                <div id="user-cdt-inversion">
+                    Has invertido ;)
+                </div>
 
-				<div id="user-cdt-mss-info">
-					<b>¿Problemas con la plataforma?</b> Escribenos a <br/> info@mejorcdt.com y reportanos el fallo.
-				</div>
+                <div id="user-cdt-montoTotal">
+                    <font>
+                        $10.000.000
+                    </font>
+                </div>
 
 
-				<div id="user-cdt-nav-footer">
-					<div id="user-nav-foo-flex">
-						<div id="nav-foo-icon">
-							<i class="far fa-user"></i>
-						</div>
+                <div id="user-cdts-abiertos-responsive">
+                    <div id="cdt-abiertos-titles">
+                        <div id="title-cdt-alls">
+                            Tus cdt's abiertos
+                        </div>
 
-						<div id="nav-foo-icon" class="active">
-							<i class="fas fa-home"></i> Inicio
-						</div>
+                        <div id="title-cdts-number">
+                            <b>2 cdt's</b> abiertos
+                        </div>
+                    </div>
 
-						<div id="nav-foo-icon" class="">
-							<i class="fas fa-sign-out-alt"></i>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-	</div>
 
-	
+                    <div id="cdts-info-responsive">
+
+                        <div id="cdt-info-header">
+                            <div id="cdt-info-bank">
+                                <div id="cdt-logo-bank">
+
+                                    <img src="assets/mobile/images/" alt="">
+                                </div>
+
+                                <div id="cdt-details-bank">
+                                    <div id="cdt-name-bank">
+                                        Credifinanciera
+                                    </div>
+
+                                    <div id="cdt-date-open-bank">
+                                        Lo abriste <b> 12 de 
+										<font class="groups-value-weigth">Ago</font> 
+										de 2022 </b>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div id="cdt-info-amount-bank">
+                                <div id="cdt-info-amount-price">
+                                    13k
+                                </div>
+
+                                <div id="cdt-date-open-bank">
+                                    Lo abriste <b> 12 de 
+									<font class="groups-value-weigth">Ago</font> 
+									de 2022 </b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="cdt-info-footer-responsive">
+                            <div id="cdt-footer-flex">
+                                <div id="cdt-faltan-days">
+                                    <i class="far fa-clock"></i> Faltan:
+                                    <font class="cdt-footer-weigth"> 12 días</font>
+                                </div>
+
+                                <div id="cdt-recibiras">
+                                    <i class="far fa-credit-card"></i> Recibirás:
+                                    <font class="cdt-footer-weigth">
+                                        $15.000.000
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div id="user-cdt-mss-info">
+                    <b>¿Problemas con la plataforma?</b> Escribenos a <br/> info@mejorcdt.com y reportanos el fallo.
+                </div>
+
+
+                <div id="user-cdt-nav-footer">
+                    <div id="user-nav-foo-flex">
+                        <div id="nav-foo-icon">
+                            <i class="far fa-user"></i>
+                        </div>
+
+                        <div id="nav-foo-icon" class="active">
+                            <i class="fas fa-home"></i> Inicio
+                        </div>
+
+                        <div id="nav-foo-icon" class="">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 </body>
+
 </html>
