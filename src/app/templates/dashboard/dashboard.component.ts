@@ -96,7 +96,6 @@ export class DashboardComponent implements OnInit {
           backgroundColor: '#142cb1',
           titleColor: 'white',
           titleFont: {weight: 'bold'},
-
       },
 
     }
@@ -127,11 +126,7 @@ export class DashboardComponent implements OnInit {
         cognito_id: [localStorage.getItem('name')],
         sns_code: ["", [Validators.required]],
       });
-
-
   }
-
-
   //Inicializador
   ngOnInit(): void {  
 

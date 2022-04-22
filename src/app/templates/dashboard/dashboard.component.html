@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <title>Panel de @name_user | mejorCDT</title>
@@ -8,43 +7,37 @@
     <script src="https://kit.fontawesome.com/749fcedd58.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body class="position-relative">
     <div class="iconAsesor position-fixed rounded-circle shadow-lg" ngbTooltip="I am Bootstrap Tooltip" placement="left">
-        <img src="../../../assets/login/Iconos/images/AlejaAsesora.jpg" alt="" class="shadow-lg">
+        <span class="tooltipMsg py-2 px-2 fs-6 rounded-3 bgColorThema text-white fw-bold position-absolute text-center">Contacta a Angie tu asesora comercial</span>
+        <img src="../../../assets/login/Iconos/images/Angie.jpeg" alt="" class="shadow-lg" id="imgAsesorTooltip">
     </div>
     <div id="panel-user" *ngIf="VersionDesktop">
         <div id="panel-user-header-nav">
             <div id="header-nav-flex">
                 <div id="header-nav-img">
-                    <img src="assets/login/Iconos/logo.png">
+                    <img src="assets/logo/logo-mejorcdt-2022-blanco.svg">
                 </div>
-
                 <div id="header-nav-menu-flex">
                     <div id="link-nav">
-                        INICIO
+                        <!-- INICIO -->
                     </div>
-
                     <div id="link-nav">
-                        MIS BENEFICIOS <i class="fas fa-angle-down"></i>
+                        <!-- MIS BENEFICIOS <i class="fas fa-angle-down"></i> -->
                     </div>
-
                     <div id="link-nav">
-                        MEJORPLUS
+                        <!-- MEJORPLUS -->
                     </div>
                 </div>
-
                 <div id="header-nav-user-flex">
                     <div id="user-info">
                         <div id="user-info-name">
                             Hola, Daniel
                         </div>
-
                         <div id="user-level">
                             <b>Nivel 12</b> | <i class="fas fa-coins"></i> <b class="puntaje-lvl"> 350</b>
                         </div>
                     </div>
-
                     <div id="user-image">
                         <div>
                             <img src="../../../assets/login/Iconos/images/item-animals/gray-wolf-svg.svg">
@@ -53,486 +46,346 @@
                 </div>
             </div>
         </div>
-
         <div id="panel-cdt">
 
-
             <ng-template #mymodal let-modal>
-
                 <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">Revisa tu correo <i class="bi bi-envelope-exclamation"></i></h4>
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 						<i class="fas fa-times"></i>
 					</button>
                 </div>
-
                 <form [formGroup]="codeVerForm" novalidate>
-
                     <div class="modal-body lh-1">
                         <label for="" #titulo_celular_sms class="mb-0">Ingresa el código de verificación,</label> que te enviamos al e-mail registrado.
                         <ng-otp-input class="mt-2" (onInputChange)="CodigoFinal($event)" *ngIf="showOtpComponent" [config]="config" #campoCelular>
                         </ng-otp-input>
-
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="button-verification-code">Desbloquear valores ($)</button>
+                    <div class="modal-footer d-block pt-0">
+                        <a href="" class="text-secondary fw-bold fs-6 text-start text-decoration-none">Reenviar código</a>
+                        <button type="submit" class="button-verification-code mt-1">Confirmar código </button>
                     </div>
-
                     <p class="max-width-app pt-2 pb-4 px-3 lh-1">
                         Hemos enviado el código a <b class="b-name-title">danielv@gmail.com</b> Si ya no tienes acceso a este correo por favor comunícate con nuestra línea de servicio para validar tu identidad
                     </p>
                 </form>
-
             </ng-template>
-
             <div id="contenedores-panel-cdt-flex">
                 <div id="contenido-userinfo">
-
                     <div id="user-info-perfil">
                         <div id="info-perfil-img-circle" class="">
                             <img src="assets/login/Iconos/circle-levels-user.svg">
                         </div>
-
 
                         <div id="info-perfil-cortador" class="divTop"></div>
                         <div id="info-perfil-img-start" class="position-top">
                             <img src="assets/login/Iconos/start-levels-user.svg">
                         </div>
 
-
-
                         <div id="perfil-image">
                             <img src="../../../assets/login/Iconos/images/item-animals/cheetah-svg.svg">
                         </div>
-
                         <div id="perfil-name-tel">
                             <div id="perfil-name">
                                 Daniel Vega
                             </div>
-
                             <div id="perfil-tel">
                                 +57 3006306922
                             </div>
                         </div>
-
                         <div id="perfil-comisiones">
                             <div id="comisiones-text">
                                 Total invertido:
-                                <font class="fs-5">$15.000.000</font>
-
+                                <font class="fs-4">$15.000.000</font>
                             </div>
-
                             <div id="perfil-update-data">
                                 <a style="cursor:pointer;" class="fs-5">Tus datos</a>
                             </div>
                         </div>
-
                         <div id="info-perfil-cortador" class="divBottom"></div>
                         <div id="info-perfil-img-start" class="position-bottom">
                             <img src="assets/login/Iconos/start-levels-user.svg">
                         </div>
                     </div>
-
                     <div id="user-info-caja-separador">
                         <div id="user-info-separador">
                             <img src="assets/login/Iconos/triangulo-levels-user.svg">
                         </div>
                     </div>
-
                     <div id="user-info-levelnav">
                         <div id="levelnav-lvl">
                             <b>Nivel 12</b>
                         </div>
-
                         <div id="levelnav-puntos">
                             <i class="fas fa-coins"></i> <b class="puntaje-lvl">350 puntos</b>
                         </div>
                     </div>
-
                     <div id="user-info-ganar-puntos">
 
-
                         <div id="ganar-puntos-title">
-                            Sacále el jugo a tu inversión
+                            Sacále el jugo a <b class="b-name-title">mejorCDT</b>
                         </div>
-
                         <div id="ganar-puntos-description">
                             Avanza en estas tareas para recibir m&aacute;s puntos extras y subir de nivel <b class="color-orange">;)</b>
                         </div>
-
                         <div id="ganar-puntos-items">
                             <div id="icons">
                                 <i class="fas fa-circle"></i>
                             </div>
-
                             <div id="text">
                                 Descarga el certificado de tu inversión
                             </div>
                         </div>
-
                         <div id="ganar-puntos-items">
                             <div id="icons">
                                 <i class="fas fa-circle"></i>
                             </div>
-
                             <div id="text">
                                 Configura una alerta para el vencimiento
                             </div>
                         </div>
-
                         <div id="ganar-puntos-items">
                             <div id="icons">
                                 <i class="fas fa-circle"></i>
                             </div>
-
                             <div id="text">
                                 Agrega dinero a tu inversión
                             </div>
                         </div>
-
                         <div id="ganar-puntos-items">
                             <div id="icons">
                                 <i class="fas fa-circle"></i>
                             </div>
-
                             <div id="text">
                                 Abre un nuevo CDT
                             </div>
                         </div>
-
                         <div id="ganar-puntos-items">
                             <div id="icons">
                                 <i class="fas fa-circle"></i>
                             </div>
-
                             <div id="text">
                                 ¿Tienes dudas? Contacta a tu asesora financiera
                             </div>
                         </div>
-
                         <div id="user-info-bg-gray"></div>
-
                     </div>
-
                     <div id="user-info-bg-gray-no"></div>
-
                 </div>
-
                 <div id="info-cdt-select">
-
                     <div id="cdt-select-title">
                         Hola <b class="b-name-title">Daniel Vega</b>
                     </div>
-
                     <div id="cdt-select-subtitle">
                         Para
                         <font class="color-template fw-bold">proteger tu información</font>,hemos ocultado los valores de montos de inversión. Tranquilo, si quieres verlos sólo necesitamos hacer una segunda verificacion con un código que enviaremos a tu e-mail registrado.
-
                         <form action="">
                             <button type="submit" (click)="open(mymodal)">Enviar código de verificación</button>
                         </form>
                     </div>
-
                     <div id="cdt-select-resumen">
                         <div id="select-resumen-flex">
-
                             <div id="resumen-cdt-info">
-
                                 <div id="cdt-user-vigents">
-
-                                    <div class="row align-items-end mb-4">
-                                        <div class="col-6 ps-0">
-                                            <span class="b-name-title fs-5 fw-bold">Tienes <b class="colorBtnHome text-white py-1 px-2 rounded-3">2</b> inversiones activas</span>
+                                    <div class="row align-items-center mb-4">
+                                        <div class="col-8 ps-0">
+                                            <span class="b-name-title fs-5 fw-bold">Tienes <b class="colorBtnHome text-white py-1 px-2 rounded-3">2</b> inversiones activas </span> 
+                                            <i class="bi bi-dash-lg"></i> 
+                                            <span class="text-secondary fs-6 fw-bold"> Inversiones anteriores: <b>0</b></span> 
                                         </div>
-                                        <div class="col-6 pe-0 text-end">
+                                        <div class="col-4 pe-0 text-end">
                                             <button class="btn colorBtnHome px-4 py-2 text-white fw-bold rounded-3 shadow-sm fs-6">
 												<i class="fa fa-plus" aria-hidden="true"></i> Abrir un nuevo CDT
 											</button>
                                         </div>
                                     </div>
-                                    <div id="cdt-user-content">
-                                        <div id="cdt-user-details">
-                                            <div id="cdt-user-details-flex">
-
-                                                <div id="cdt-detail-bank-amount">
-                                                    <div id="cdt-bank-logo">
-                                                        <img src="https://mejorcdt.com/wp-content/uploads/2021/02/Credifinanciera.png">
-                                                    </div>
-
-                                                    <div id="cdt-amount-value">
-                                                        $15.000.000
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div id="cdt-detail-aval">
-                                                    <div id="cdt-detail-aval-flex">
-
-                                                        <div id="cdt-aval-groups">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Lo abriste
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                12 de
-                                                                <font class="groups-value-weigth">Abril</font>
-                                                                de 2022
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="cdt-aval-groups">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Se vence
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                12 de
-                                                                <font class="groups-value-weigth">Abril</font>
-                                                                de 2022
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="cdt-aval-groups">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Plazo
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                <font class="groups-value-weigth">12</font> días
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="cdt-aval-groups" class="margin-0">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Tasa
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                7%
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-
-                                                <div id="cdt-detail-download">
-
-                                                    <div id="cdt-download-button">
-
-                                                        <font>
-                                                            <a>
-                                                                <button> Descargar Deceval </button>
-                                                            </a>
-                                                        </font>
-
-                                                    </div>
-
-                                                    <div id="cdt-download-config">
-                                                        Aún no haz configurado cómo quieres retirar tu dinero. <a style="cursor:pointer;">Haz clic aquí</a>
-                                                    </div>
-                                                </div>
-
+                                    <div id="cdt-user-content" class="bg-white mb-3">
+                                        <div id="cdt-user-details" class="position-relative  pt-1">
+                                            <div class="position-absolute d-grid numCDT colorBtnHome text-white fw-bold rounded-circle align-items-center justify-content-center">
+                                                1
                                             </div>
+                                            <div id="cdt-user-details-flex" class="row align-items-center">
+                                                <div class="col-9 ps-0">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-6 ps-0">
+                                                            <img class="img-thumbnail p-1 bg-white rounded-3 border-0 img-bankCDT" src="https://mejorcdt.com/wp-content/uploads/2021/02/Banco W.png">
+                                                        </div>
+                                                        <div class="col-6 text-end pe-0 lh-1">
+                                                            <span class="fs-6 b-name-title fw-bold">
+                                                                Lo abriste con:
+                                                            </span>
+                                                            <span class="fs-2 puntaje-lvl fw-bold">
+                                                                $15.000.000
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 px-0 mt-2" id="cdt-detail-aval">
+                                                        <div class="row justify-content-between" id="cdt-detail-aval-flex">
+                                                            <div class="col-auto me-2" id="cdt-aval-groups">
+                                                                <div id="cdt-aval-groups-ttile">
+                                                                    Lo abriste
+                                                                </div>
+                                                                <div id="cdt-aval-groups-value">
+                                                                    12 de
+                                                                    <font class="groups-value-weigth">Abril</font>
+                                                                    de 2022
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto me-2" id="cdt-aval-groups">
+                                                                <div id="cdt-aval-groups-ttile">
+                                                                    Se vence
+                                                                </div>
+                                                                <div id="cdt-aval-groups-value">
+                                                                    12 de
+                                                                    <font class="groups-value-weigth">Abril</font>
+                                                                    de 2022
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto me-2" id="cdt-aval-groups">
+                                                                <div id="cdt-aval-groups-ttile">
+                                                                    Plazo
+                                                                </div>
+                                                                <div id="cdt-aval-groups-value">
+                                                                    <font class="groups-value-weigth">12</font> días
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto me-2" id="cdt-aval-groups" >
+                                                                <div id="cdt-aval-groups-ttile">
+                                                                    Tasa
+                                                                </div>
+                                                                <div id="cdt-aval-groups-value">
+                                                                    7%
+                                                                </div>
+                                                            </div>
 
+                                                            <div class="col-auto" id="cdt-aval-groups" >
+                                                                <div id="cdt-aval-groups-ttile">
+                                                                    Intereses
+                                                                </div>
+                                                                <div id="cdt-aval-groups-value">
+                                                                    $ 2’160.000
+                                                                </div>
+                                                            </div>
+    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 px-0 border-left-cdts ps-3 align-content-center">
+                                                    <div id="cdt-detail-download">
+                                                        <div id="cdt-download-button">
+                                                            <font>
+                                                                <a>
+                                                                    <button> Descargar Deceval </button>
+                                                                </a>
+                                                            </font>
+                                                        </div>
+
+                                                        <div id="cdt-download-button" class="mt-2">
+                                                            <font>
+                                                                <a>
+                                                                    <button> Más información  </button>
+                                                                </a>
+                                                            </font>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div id="cdt-user-detail-footer" class="p-0">
                                                 <div id="cdt-footer-flex" class="row align-items-center p-3">
-                                                    <div id="" class="fs-4 col-3 ps-0 text-start">
+                                                    <div id="" class="fs-5 col-3 ps-0 text-start">
                                                         <i class="far fa-clock"></i> Faltan:
                                                         <font class="cdt-footer-weigth">17 días</font>
                                                     </div>
-
                                                     <div class="fs-5 col-3 ps-0 text-end">
                                                         <i class="bi bi-alarm"></i> Configurar alerta
                                                     </div>
-
                                                     <div class="col-6 text-end pe-0">
                                                         <i class="fs-5 fas fa-coins puntaje-lvl"></i> Al final recibirás
-
-                                                        <font class="cdt-footer-weigth fs-4 ps-2">
+                                                        <font class="cdt-footer-weigth fs-3 ps-2">
                                                             <b class="puntaje-lvl">$10.000.000</b>
                                                         </font>
-
                                                     </div>
-
                                                 </div>
-
-                                                <div class="row bg-white px-3">
-                                                    <div class="col-10 ps-0">
+                                                <div class="row align-items-center bg-white px-3 pb-3">
+                                                    <div class="col-9 ps-0">
                                                         <div class="chart-wrapper">
                                                             <canvas baseChart [data]="salesData" [type]="'line'" [options]="chartOptions"></canvas>
                                                         </div>
                                                     </div>
+                                                    <div class="col-3 ps-1 pe-0">
+                                                        <div id="cdt-download-button" class="mt-2">
+                                                            <font>
+                                                                <a>
+                                                                    <button> Abrir un CDT  </button>
+                                                                </a>
+                                                            </font>
+                                                        </div>
 
-                                                    <div class="col-2 pe-0">
-                                                        hola
+                                                        <div id="cdt-download-button" class="mt-2">
+                                                            <font>
+                                                                <a>
+                                                                    <button> Añadir dinero  </button>
+                                                                </a>
+                                                            </font>
+                                                        </div>
+
+                                                        <div id="cdt-download-button" class="mt-2">
+                                                            <font>
+                                                                <a>
+                                                                    <button> Configurar retiro  </button>
+                                                                </a>
+                                                            </font>
+                                                        </div>
+
+                                                        <div id="cdt-download-config">
+                                                            Tienes una emergencia, consulta <a style="cursor:pointer;">cdt flexible</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div id="cdt-user-content">
-                                        <div id="cdt-user-details">
-                                            <div id="cdt-user-details-flex">
-
-                                                <div id="cdt-detail-bank-amount">
-                                                    <div id="cdt-bank-logo">
-                                                        <img src="https://mejorcdt.com/wp-content/uploads/2021/02/Credifinanciera.png">
-                                                    </div>
-
-                                                    <div id="cdt-amount-value">
-                                                        $15.000.000
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div id="cdt-detail-aval">
-                                                    <div id="cdt-detail-aval-flex">
-
-                                                        <div id="cdt-aval-groups">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Lo abriste
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                12 de
-                                                                <font class="groups-value-weigth">Abril</font>
-                                                                de 2022
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="cdt-aval-groups">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Se vence
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                12 de
-                                                                <font class="groups-value-weigth">Abril</font>
-                                                                de 2022
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="cdt-aval-groups">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Plazo
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                <font class="groups-value-weigth">12</font> días
-                                                            </div>
-                                                        </div>
-
-                                                        <div id="cdt-aval-groups" class="margin-0">
-                                                            <div id="cdt-aval-groups-ttile">
-                                                                Tasa
-                                                            </div>
-                                                            <div id="cdt-aval-groups-value">
-                                                                7%
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                </div>
-
-                                                <div id="cdt-detail-download">
-
-                                                    <div id="cdt-download-button">
-
-                                                        <font>
-                                                            <a>
-                                                                <button> Descargar Deceval </button>
-                                                            </a>
-                                                        </font>
-
-                                                    </div>
-
-                                                    <div id="cdt-download-config">
-                                                        Aún no haz configurado cómo quieres retirar tu dinero. <a style="cursor:pointer;">Haz clic aquí</a>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div id="cdt-user-detail-footer">
-                                                <div id="cdt-footer-flex">
-                                                    <div id="cdt-footer-timeExp">
-                                                        <i class="far fa-clock"></i> Faltan:
-                                                        <font class="cdt-footer-weigth">17 días</font>
-                                                    </div>
-
-                                                    <div id="cdt-footer-total">
-                                                        <i class="far fa-credit-card"></i> Al final recibirás
-
-                                                        <font class="cdt-footer-weigth">
-                                                            $10.000.000
-                                                        </font>
-
-                                                    </div>
-
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <div id="panel-user-mobile" *ngIf="VersionMobile">
-
         <ng-template #mymodal let-modal>
-
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-basic-title">Revisa tu celu ;)</h4>
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 					<i class="fas fa-times"></i>
 				</button>
             </div>
-
             <form [formGroup]="codeVerForm">
                 <div class="modal-body">
                     <label for="">Escribe el código de verificación</label>
                     <input type="text" class="form-control" placeholder="Puedes escribirlo aquí" formControlName="sns_code">
                 </div>
-
                 <div class="modal-footer">
                     <button type="submit" class="button-verification-code">Verificar código</button>
                 </div>
             </form>
-
         </ng-template>
 
-
         <ng-template #mymodalCDT let-modal>
-
             <div class="modal-header" id="modalResponsiveHeader">
                 <i class="fas fa-long-arrow-alt-left" aria-label="Close" (click)="modal.dismiss('Cross click')"></i>
                 <h4 class="modal-title" id="modal-basic-title">
-
                 </h4>
                 <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 					<i class="fas fa-times"></i>
 				</button>
             </div>
-
             <div id="modal-aval-responsive">
-
                 <a href="">Descargar aval</a>
             </div>
-
             <div id="modal-info-cdt-config">
                 <div id="info-config-title">
                     <i class="fas fa-exclamation-circle"></i> ¡Hey <b>tú!</b>
@@ -542,48 +395,39 @@
                     <a>Haz clic aquí y configuralo.</a>
                 </div>
             </div>
-
             <div class="modal-body">
-
                 <div id="box-cdt">
                     <div id="title-info-cdt-date">
                         A tú cdt le quedan
                     </div>
-
                     <div id="cdt-box-dateOp">
                         <div id="box-dateOp-title">
                             Te faltan:
                         </div>
-
                         <div id="box-dateOp-info">
                             13 días
                         </div>
                     </div>
                 </div>
-
                 <div id="box-cdt">
                     <div id="title-info-cdt-date">
                         En cuestiones de fecha
                     </div>
-
                     <div id="cdt-box-dateOp-2">
                         <div id="cdt-box-col">
                             <div id="box-dateOp-title-2">
                                 Lo abriste
                             </div>
-
                             <div id="box-dateOp-info-2">
                                 13 de <b> 
 									<font class="groups-value-weigth">Ago</font> 
 									de 2022 </b>
                             </div>
                         </div>
-
                         <div id="cdt-box-col" style="text-align: right;">
                             <div id="box-dateOp-title-2">
                                 Se vence
                             </div>
-
                             <div id="box-dateOp-info-2">
                                 13 de <b> 
 									<font class="groups-value-weigth">Ago</font> 
@@ -591,34 +435,28 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
-
 
                 <div id="box-cdt">
                     <div id="title-info-cdt-date">
                         Y así empezó, y así terminará
                     </div>
-
                     <div id="cdt-box-dateOp-2" class="mod-cdt-box">
                         <div id="cdt-box-col">
                             <div id="box-dateOp-title-2" class="weigth-200">
                                 Invertiste
                             </div>
-
                             <div id="box-dateOp-info-2">
                                 <font class="cdt-footer-weigth">
                                     $10.000.000
                                 </font>
                             </div>
                         </div>
-
                         <div id="cdt-box-col" style="text-align: right;">
                             <div id="box-dateOp-title-2" class="weigth-200">
                                 Recibirás
                             </div>
-
                             <div id="box-dateOp-info-2">
                                 <font class="cdt-footer-weigth">
                                     $10.000.000
@@ -626,57 +464,44 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
-
                 <div id="box-cdt">
                     <div id="title-info-cdt-date">
                         Y le tiraste al
                     </div>
-
                     <div id="cdt-box-dateOp-2">
                         <div id="cdt-box-col">
                             <div id="box-dateOp-title-2">
                                 Plazo de
                             </div>
-
                             <div id="box-dateOp-info-2">
                                 <b class="amount-size"> 12 </b>
                                 <font>días</font>
                             </div>
                         </div>
-
                         <div id="cdt-box-col" style="text-align: right;">
                             <div id="box-dateOp-title-2">
                                 Tasa de
                             </div>
-
                             <div id="box-dateOp-info-2">
                                 <b class="amount-size"> 7% </b>
                             </div>
                         </div>
 
-
                     </div>
                 </div>
-
                 <div id="user-cdt-mss-info">
                     <b>¿Problemas con la plataforma?</b> Escribenos a <br/> info@mejorcdt.com y reportanos el fallo.
                 </div>
-
             </div>
-
             <div class="modal-footer">
                 <button style="padding: 15px 0px" type="submit" class="button-verification-code" id="cdt_id_">
 					<a style="color:white; text-decoration: none;" target="_blank">	Descargar aval del cdt </a>
 				</button>
             </div>
 
-
-
         </ng-template>
-
         <div id="panel-content-mobile">
             <div id="panel-user-header">
                 <div id="user-header-edit">
@@ -685,17 +510,14 @@
                     </form>
                 </div>
 
-
                 <div id="user-image-profile-responsive">
                     <div id="user-image-responsive">
                         <img src="../../../assets/login/Iconos/images/item-animals/lesser-svg.svg" alt="">
                     </div>
-
                     <div id="user-profile-responsive">
                         <div id="profile-welcome-responsive">
                             Bienvenid@ <b>;)</b>
                         </div>
-
                         <div id="profile-name-responsive">
                             ¡Hola Daniel Vega!
                         </div>
@@ -703,45 +525,36 @@
                 </div>
             </div>
 
-
             <div id="panel-user-cdt">
                 <div id="user-cdt-inversion">
                     Has invertido ;)
                 </div>
-
                 <div id="user-cdt-montoTotal">
                     <font>
                         $10.000.000
                     </font>
                 </div>
 
-
                 <div id="user-cdts-abiertos-responsive">
                     <div id="cdt-abiertos-titles">
                         <div id="title-cdt-alls">
                             Tus cdt's abiertos
                         </div>
-
                         <div id="title-cdts-number">
                             <b>2 cdt's</b> abiertos
                         </div>
                     </div>
 
-
                     <div id="cdts-info-responsive">
-
                         <div id="cdt-info-header">
                             <div id="cdt-info-bank">
                                 <div id="cdt-logo-bank">
-
                                     <img src="assets/mobile/images/" alt="">
                                 </div>
-
                                 <div id="cdt-details-bank">
                                     <div id="cdt-name-bank">
                                         Credifinanciera
                                     </div>
-
                                     <div id="cdt-date-open-bank">
                                         Lo abriste <b> 12 de 
 										<font class="groups-value-weigth">Ago</font> 
@@ -749,14 +562,11 @@
                                     </div>
                                 </div>
 
-
                             </div>
-
                             <div id="cdt-info-amount-bank">
                                 <div id="cdt-info-amount-price">
                                     13k
                                 </div>
-
                                 <div id="cdt-date-open-bank">
                                     Lo abriste <b> 12 de 
 									<font class="groups-value-weigth">Ago</font> 
@@ -764,14 +574,12 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="cdt-info-footer-responsive">
                             <div id="cdt-footer-flex">
                                 <div id="cdt-faltan-days">
                                     <i class="far fa-clock"></i> Faltan:
                                     <font class="cdt-footer-weigth"> 12 días</font>
                                 </div>
-
                                 <div id="cdt-recibiras">
                                     <i class="far fa-credit-card"></i> Recibirás:
                                     <font class="cdt-footer-weigth">
@@ -782,24 +590,19 @@
                         </div>
                     </div>
 
-
                 </div>
-
                 <div id="user-cdt-mss-info">
                     <b>¿Problemas con la plataforma?</b> Escribenos a <br/> info@mejorcdt.com y reportanos el fallo.
                 </div>
-
 
                 <div id="user-cdt-nav-footer">
                     <div id="user-nav-foo-flex">
                         <div id="nav-foo-icon">
                             <i class="far fa-user"></i>
                         </div>
-
                         <div id="nav-foo-icon" class="active">
                             <i class="fas fa-home"></i> Inicio
                         </div>
-
                         <div id="nav-foo-icon" class="">
                             <i class="fas fa-sign-out-alt"></i>
                         </div>
@@ -807,10 +610,7 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-
 </body>
-
 </html>

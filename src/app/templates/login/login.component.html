@@ -86,7 +86,7 @@
                                 <span class="text-secondary fw-light">que te enviamos por SMS a tu celular</span>
                             </div>                          
 
-                            <div id="input-telphone" class="mb-1">
+                            <div id="input-telphone" class="mb-0">
                                 <ng-otp-input  
                                     (onInputChange)="CodigoFinal($event)" 
                                     *ngIf="showOtpComponent" 
@@ -103,6 +103,7 @@
                             </div>
 
                             <div id="button-form">
+                                <a href="" class="text-secondary fw-bold fs-6 text-start mb-2 text-decoration-none">Reenviar código</a>
                                 <button type="submit" class="btn-home-hover bgButtonTema" (click)="EnviarIngresarCodigo();">Ingresar</button>
                             </div>
 

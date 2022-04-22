@@ -7,6 +7,53 @@ body {
     background: #f3f4f4;
 }
 
+.border-left-cdts{
+    border-left: 1px dotted #1731b1;
+}
+
+.bgColorThema{
+    background-color: #142cb1;
+}
+
+.numCDT {
+    width: 40px;
+    height: 40px;
+    margin-left: -1%;
+    margin-top: -2%;
+    box-shadow: 3px -3px 9px 0px #142cb133;
+}
+
+
+/* Mostrando los tooltips*/
+.iconAsesor:hover .tooltipMsg {
+	display: block;
+}
+
+/* Tooltip CSS 2.1 */
+.tooltipMsg:before {
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 11px solid #142cb1;
+    top: 40%;
+    content: "";
+    height: 0;
+    right: 0;
+    margin-right: -8px;
+    position: absolute;
+    width: 0;
+}
+
+.tooltipMsg {
+    display: none;
+    right: 5.5em;
+    width: 220px;
+    bottom: 10%;
+}
+
+.img-bankCDT{
+    height: 80px;
+}
+
 .colorBtnHome {
     background: #00db2f
 }
@@ -16,11 +63,12 @@ body {
 }
 
 .iconAsesor {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     bottom: 1%;
     right: 1%;
     cursor: pointer;
+    z-index: 99;
 }
 
 .iconAsesor img {
@@ -175,15 +223,15 @@ div#user-image img {
 }
 
 div#user-level i {
-    color: #e7ca17;
+    color: #ffbf00;
 }
 
 .puntaje-lvl {
-    color: #e7ca17;
+    color: #ffbf00;
 }
 
 .bg-puntaje-lvl {
-    background-color: #e7ca17;
+    background-color: #ffbf00;
 }
 
 div#panel-user-header-nav {
@@ -897,9 +945,6 @@ div#cdt-user-vigents {
 }
 
 div#cdt-user-content {
-    display: grid;
-    margin: 0% 0% 4%;
-    padding: 2% 0% 0%;
     box-shadow: 0px 0px 14px 4px #142cb133;
     border-radius: 10px;
 }
@@ -909,19 +954,17 @@ div#cdt-user-details {
 }
 
 div#cdt-user-details-flex {
-    display: flex;
+  
     padding: 0% 2%;
 }
 
 div#cdt-detail-bank-amount {
-    width: 20%;
     border-right: 1px solid #142cb170;
     padding: 0% 2% 0% 0%;
     align-self: center;
 }
 
 div#cdt-bank-logo {
-    width: 100%;
     height: 60px;
     background: #ffffff;
     border-radius: 5px;
@@ -943,19 +986,15 @@ div#cdt-amount-value {
 }
 
 div#cdt-detail-aval {
-    width: 58%;
     padding: 0% 1%;
     align-self: center;
 }
 
 div#cdt-detail-aval-flex {
-    display: flex;
     width: 100%;
 }
 
 div#cdt-aval-groups {
-    width: 25%;
-    margin: 0% 2% 0% 0%;
     padding: 2%;
     text-align: center;
     background: #dde2ff;
@@ -982,12 +1021,6 @@ div#cdt-aval-groups-value .groups-value-weigth {
 
 .margin-0 {
     margin-right: 0%!important;
-}
-
-div#cdt-detail-download {
-    width: 22%;
-    padding: 0% 0% 0% 1%;
-    border-left: 1px solid #142cb170;
 }
 
 div#cdt-download-button {
