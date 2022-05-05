@@ -1,19 +1,4 @@
-export interface PhoneNameI{
-    USERNAME: string;
-}
-
-export interface PhoneRSHTTPHeadersI{
-    date:string;
-    connection: string;
-}
-
-export interface PhoneResponseStatusI{
-    RequestId:string;
-    HTTPStatusCode: number;
-    HTTPHeaders: PhoneRSHTTPHeadersI;
-    RetryAttempts:number;
-}
-
+/* Interfaz, parametros de body en respuesta a SignUP */
 export interface LoginPhoneI{
     ChallengeName: string;
     Session:string; 
@@ -22,9 +7,21 @@ export interface LoginPhoneI{
     message:string;
     code:string;
 }
-
-export interface CodeResponseStatusI{
+export interface PhoneNameI{
+    USERNAME: string;
+}
+export interface PhoneResponseStatusI{
+    RequestId:string;
     HTTPStatusCode: number;
+    HTTPHeaders: PhoneRSHTTPHeadersI;
+    RetryAttempts:number;
+}
+/* End */
+
+/* Interfaz, parametros de body en respuesta a sign_in Codigo */
+export interface LoginCodeI{
+    AuthenticationResult: AuthenticationResultI;
+    ResponseMetadata: CodeResponseStatusI;
 }
 
 export interface AuthenticationResultI{
@@ -33,7 +30,16 @@ export interface AuthenticationResultI{
     IdToken: string;
 }
 
-export interface LoginCodeI{
-    AuthenticationResult: AuthenticationResultI;
-    ResponseMetadata: CodeResponseStatusI;
+export interface CodeResponseStatusI{
+    HTTPStatusCode: number;
 }
+
+/* END */
+
+
+
+export interface PhoneRSHTTPHeadersI{
+    date:string;
+    connection: string;
+}
+

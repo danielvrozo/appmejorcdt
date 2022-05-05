@@ -6,9 +6,6 @@
     <title>Inicia sesion | mejorCDT</title>
     <link rel="icon" href="assets/logo/MejorCDT_Icon_White-32x32.png" sizes="32x32">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -30,21 +27,29 @@
 
                     <form novalidate [formGroup]="Formulario_Celular_Codigo">
                         <div id="title-form">
-                            Inicia sesi&oacute;n
+                            Inicia sesi&oacute;n 
                         </div>
 
                         <div *ngIf="AlertaMensaje" class="mb-4 alert-input-form">
                             <div>
-                                <b>{{MensajeError}}.</b>
+                                <b>Error :/.</b>
+                                <p class="fw-normal">
+                                    {{MensajeError}}
+                                </p>
                             </div>
                         </div>
 
                         <div *ngIf="Campo_Celular">
                             <div #titulo_celular id="label-input" class="mb-1">
                                 <label>Escribe tu número de celular </label>
-                            </div>                          
+                            </div>    
+                            
+                            <div id="info-code" class="mb-3">
+                                Enviaremos un código de verificación a tú celu para iniciar sesión.
+                            </div>
 
-                            <div id="input-telphone" class="mb-2">
+
+                            <div id="input-telphone" class="mb-3">
                                 <ngx-intl-tel-input 
                                     [customPlaceholder]="'3006306922'"
                                     #Campo_Celular
@@ -70,22 +75,25 @@
                                 <input type="hidden" formControlName="key_app" value="portal_cdt">
                             </div>
 
-                            <div id="info-code" class="mb-3">
-                                {{mensaje_ayuda}}
-                            </div>
-
+                            
                             <div id="button-form">
                                 <button type="submit" class="btn-home-hover bgButtonTema" (click)="EnviarCodigo();">Enviar c&oacute;digo de verificaci&oacute;n</button>
                             </div>
 
                         </div>
 
+                        <div class="loading-api" *ngIf="GifLoadingAPI">
+                            <img src="assets/mobile/images/loading.svg" alt="" srcset="">
+                        </div>
+
                         <div *ngIf="Campo_Codigo">
                             <div #titulo_celular id="label-input" class="mb-3 lh-sm">
+                                <a href="" class="text-secondary fw-bold fs-6 text-end text-decoration-none">Reenviar código</a> <br>
                                 <label>Ingresa el código de verificación, </label> <br/>
-                                <span class="text-secondary fw-light">que te enviamos por SMS a tu celular</span>
+                                <span class="text-secondary fw-light">que te enviamos por SMS a tu celular</span><br>
+                                
                             </div>                          
-
+                            
                             <div id="input-telphone" class="mb-0">
                                 <ng-otp-input  
                                     (onInputChange)="CodigoFinal($event)" 
@@ -99,11 +107,10 @@
                             </div>
 
                             <div id="info-code" class="mb-3">
-                                {{mensaje_ayuda}}
+                            
                             </div>
 
-                            <div id="button-form">
-                                <a href="" class="text-secondary fw-bold fs-6 text-start mb-2 text-decoration-none">Reenviar código</a>
+                            <div id="button-form">                     
                                 <button type="submit" class="btn-home-hover bgButtonTema" (click)="EnviarIngresarCodigo();">Ingresar</button>
                             </div>
 
@@ -112,7 +119,9 @@
                         
 
                         <div id="info-politicas" style="cursor:pointer;" >
-                            <p>Consulta nuestra <b>politica de tratamientos de datos</b>.</p>
+                            <a href="" class="text-decoration-none text-secondary">
+                                <p>Consulta nuestra <b>politica de tratamientos <br> de datos</b>.</p>
+                            </a>
                         </div>
 
 
@@ -127,7 +136,7 @@
 
             <div id="login-image">
                 <div id="logo-image-right">
-                    <img src="assets/login/Iconos/logo.png">
+                    <img src="assets/logo/logo-mejorcdt-2022-blanco.svg">
                 </div>
 
 

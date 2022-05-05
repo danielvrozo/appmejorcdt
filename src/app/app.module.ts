@@ -25,7 +25,6 @@ import { NgChartsModule } from 'ng2-charts';
     LevelsComponent,
     UpdateComponent,
     ModalComponent
-    
   ],
   imports: [
     BrowserModule,

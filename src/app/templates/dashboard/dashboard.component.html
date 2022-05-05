@@ -32,10 +32,10 @@
                 <div id="header-nav-user-flex">
                     <div id="user-info">
                         <div id="user-info-name">
-                            Hola, Daniel
+                            Hola, {{nombreUsuario}}
                         </div>
                         <div id="user-level">
-                            <b>Nivel 12</b> | <i class="fas fa-coins"></i> <b class="puntaje-lvl"> 350</b>
+                            <b>Nivel {{nivelUsuario}}</b> | <i class="fas fa-coins"></i> <b class="puntaje-lvl"> {{puntajeUsuario}}</b>
                         </div>
                     </div>
                     <div id="user-image">
@@ -51,12 +51,20 @@
             <ng-template #mymodal let-modal>
                 <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">Revisa tu correo <i class="bi bi-envelope-exclamation"></i></h4>
+                    
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
 						<i class="fas fa-times"></i>
 					</button>
                 </div>
-                <form [formGroup]="codeVerForm" novalidate>
+                <form  (ngSubmit)="VerificarCodigo()" novalidate>
                     <div class="modal-body lh-1">
+                        <div class="mt-2 text-danger text-start fw-bold mensajeApi " *ngIf="errorAPI">
+                            <p> {{ MensajeError }} </p>
+                        </div>
+    
+                        <div class="mt-1 mb-2 color-orange text-start fw-bold mensajeApi" *ngIf="okAPI">
+                            <p> {{ MensajeOk }} </p>
+                        </div>
                         <label for="" #titulo_celular_sms class="mb-0">Ingresa el código de verificación,</label> que te enviamos al e-mail registrado.
                         <ng-otp-input class="mt-2" (onInputChange)="CodigoFinal($event)" *ngIf="showOtpComponent" [config]="config" #campoCelular>
                         </ng-otp-input>
@@ -65,6 +73,9 @@
                         <a href="" class="text-secondary fw-bold fs-6 text-start text-decoration-none">Reenviar código</a>
                         <button type="submit" class="button-verification-code mt-1">Confirmar código </button>
                     </div>
+
+                    
+
                     <p class="max-width-app pt-2 pb-4 px-3 lh-1">
                         Hemos enviado el código a <b class="b-name-title">danielv@gmail.com</b> Si ya no tienes acceso a este correo por favor comunícate con nuestra línea de servicio para validar tu identidad
                     </p>
@@ -87,16 +98,17 @@
                         </div>
                         <div id="perfil-name-tel">
                             <div id="perfil-name">
-                                Daniel Vega
+                                {{nombreUsuario}}
                             </div>
                             <div id="perfil-tel">
-                                +57 3006306922
+                                {{celularUsuario}}
                             </div>
                         </div>
                         <div id="perfil-comisiones">
                             <div id="comisiones-text">
                                 Total invertido:
-                                <font class="fs-4">$15.000.000</font>
+                                <font class="fs-4" *ngIf="controlMontos == false">******</font>
+                                <font class="fs-4" *ngIf="controlMontos == true">${{separadorMiles(totalInvertido)}}</font>
                             </div>
                             <div id="perfil-update-data">
                                 <a style="cursor:pointer;" class="fs-5">Tus datos</a>
@@ -114,10 +126,10 @@
                     </div>
                     <div id="user-info-levelnav">
                         <div id="levelnav-lvl">
-                            <b>Nivel 12</b>
+                            <b>Nivel {{nivelUsuario}}</b>
                         </div>
                         <div id="levelnav-puntos">
-                            <i class="fas fa-coins"></i> <b class="puntaje-lvl">350 puntos</b>
+                            <i class="fas fa-coins"></i> <b class="puntaje-lvl">{{puntajeUsuario}} puntos</b>
                         </div>
                     </div>
                     <div id="user-info-ganar-puntos">
@@ -173,15 +185,17 @@
                     <div id="user-info-bg-gray-no"></div>
                 </div>
                 <div id="info-cdt-select">
-                    <div id="cdt-select-title">
-                        Hola <b class="b-name-title">Daniel Vega</b>
-                    </div>
-                    <div id="cdt-select-subtitle">
-                        Para
-                        <font class="color-template fw-bold">proteger tu información</font>,hemos ocultado los valores de montos de inversión. Tranquilo, si quieres verlos sólo necesitamos hacer una segunda verificacion con un código que enviaremos a tu e-mail registrado.
-                        <form action="">
-                            <button type="submit" (click)="open(mymodal)">Enviar código de verificación</button>
-                        </form>
+                    <div *ngIf="InformacionCodigo == true">
+                        <div id="cdt-select-title">
+                            Hola <b class="b-name-title">{{nombreUsuario}}</b>
+                        </div>
+                        <div id="cdt-select-subtitle">
+                            Para
+                            <font class="color-template fw-bold">proteger tu información</font>,hemos ocultado los valores de montos de inversión. Tranquilo, si quieres verlos sólo necesitamos hacer una segunda verificacion con un código que enviaremos a tu e-mail registrado.
+                            <form action="" (ngSubmit)="EnviarCodigoVerificacion()">
+                                <button type="submit" (click)="open(mymodal)">Enviar código de verificación</button>
+                            </form>
+                        </div>
                     </div>
                     <div id="cdt-select-resumen">
                         <div id="select-resumen-flex">
@@ -189,163 +203,237 @@
                                 <div id="cdt-user-vigents">
                                     <div class="row align-items-center mb-4">
                                         <div class="col-8 ps-0">
-                                            <span class="b-name-title fs-5 fw-bold">Tienes <b class="colorBtnHome text-white py-1 px-2 rounded-3">2</b> inversiones activas </span> 
+                                            <span class="b-name-title fs-5 fw-bold">Tienes <b class="colorBtnHome text-white py-1 px-2 rounded-3">{{totalCDTS}}</b> inversiones activas </span> 
                                             <i class="bi bi-dash-lg"></i> 
                                             <span class="text-secondary fs-6 fw-bold"> Inversiones anteriores: <b>0</b></span> 
                                         </div>
                                         <div class="col-4 pe-0 text-end">
                                             <button class="btn colorBtnHome px-4 py-2 text-white fw-bold rounded-3 shadow-sm fs-6">
-												<i class="fa fa-plus" aria-hidden="true"></i> Abrir un nuevo CDT
+												<i class="fa fa-plus" aria-hidden="true"></i> Abrir nuevo CDT
 											</button>
                                         </div>
                                     </div>
-                                    <div id="cdt-user-content" class="bg-white mb-3">
-                                        <div id="cdt-user-details" class="position-relative  pt-1">
-                                            <div class="position-absolute d-grid numCDT colorBtnHome text-white fw-bold rounded-circle align-items-center justify-content-center">
-                                                1
-                                            </div>
-                                            <div id="cdt-user-details-flex" class="row align-items-center">
-                                                <div class="col-9 ps-0">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-6 ps-0">
-                                                            <img class="img-thumbnail p-1 bg-white rounded-3 border-0 img-bankCDT" src="https://mejorcdt.com/wp-content/uploads/2021/02/Banco W.png">
+                                    <!-- Iterando CDTS -->
+                                    <div *ngFor="let cdt of NgForCDTS">
+                                        <div id="cdt-user-content" class="bg-white mb-5">
+                                            <div id="cdt-user-details" class="position-relative  pt-1">
+                                                <div class="position-absolute d-grid numCDT colorBtnHome text-white fw-bold rounded-circle align-items-center justify-content-center">
+                                                    {{ cdt.id+1 }}
+                                                </div>
+                                                <div id="cdt-user-details-flex" class="row align-items-center">
+                                                    <div class="col-9 ps-0">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-6 ps-0">
+                                                                <img class="img-thumbnail p-1 bg-white rounded-3 border-0 img-bankCDT" src="https://mejorcdt.com/wp-content/uploads/2021/02/{{cdt.bank}}.png">
+                                                            </div>
+                                                            <div class="col-6 text-end pe-0 lh-1">
+                                                               
+                                                                <span class="fs-2 b-name-title fw-bold">
+                                                                    <span *ngIf="controlMontos == false">
+                                                                        {{cdt.amount}}
+                                                                    </span>
+
+                                                                    <span *ngIf="controlMontos == true">
+                                                                        ${{separadorMiles(cdt.amount)}}
+                                                                    </span>
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-6 text-end pe-0 lh-1">
-                                                            <span class="fs-6 b-name-title fw-bold">
-                                                                Lo abriste con:
-                                                            </span>
-                                                            <span class="fs-2 puntaje-lvl fw-bold">
-                                                                $15.000.000
-                                                            </span>
+                                                        <div class="col-12 px-0 mt-2" id="cdt-detail-aval">
+                                                            <div class="row justify-content-between" id="cdt-detail-aval-flex">
+                                                                <div class="col-auto me-2" id="cdt-aval-groups">
+                                                                    <div id="cdt-aval-groups-ttile">
+                                                                        Inicio
+                                                                    </div>
+                                                                    <div id="cdt-aval-groups-value">
+                                                                        {{ FechaLetras(cdt.date_open, 1) }} de 
+                                                                        <font class="groups-value-weigth">{{ FechaLetras(cdt.date_open, 2) | slice:0:3  }}</font> 
+                                                                        de {{ FechaLetras(cdt.date_open, 3) }}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto me-2" id="cdt-aval-groups">
+                                                                    <div id="cdt-aval-groups-ttile">
+                                                                        Vence
+                                                                    </div>
+                                                                    <div id="cdt-aval-groups-value">
+                                                                        {{ FechaLetras(cdt.date_expiration, 1) }} de 
+                                                                        <font class="groups-value-weigth">{{ FechaLetras(cdt.date_expiration, 2) | slice:0:3  }}</font> 
+                                                                        de {{ FechaLetras(cdt.date_expiration, 3) }}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto" id="cdt-aval-groups" >
+                                                                    <div id="cdt-aval-groups-ttile">
+                                                                        Intereses
+                                                                    </div>
+                                                                    <div id="cdt-aval-groups-value">
+                                                                        <span *ngIf="controlMontos == false">
+                                                                            ***
+                                                                        </span>
+                                                                        <span *ngIf="controlMontos == true">
+                                                                            ${{ separadorMiles(gananciasRoi(cdt.amount, cdt.roi))  }}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto me-2" id="cdt-aval-groups">
+                                                                    <div id="cdt-aval-groups-ttile">
+                                                                        Plazo
+                                                                    </div>
+                                                                    <div id="cdt-aval-groups-value">
+                                                                        <font class="groups-value-weigth">{{cdt.term}}</font> días
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-auto me-2" id="cdt-aval-groups" >
+                                                                    <div id="cdt-aval-groups-ttile">
+                                                                        Tasa
+                                                                    </div>
+                                                                    <div id="cdt-aval-groups-value">
+                                                                        {{cdt.rate}}
+                                                                    </div>
+                                                                </div>
+        
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 px-0 mt-2" id="cdt-detail-aval">
-                                                        <div class="row justify-content-between" id="cdt-detail-aval-flex">
-                                                            <div class="col-auto me-2" id="cdt-aval-groups">
-                                                                <div id="cdt-aval-groups-ttile">
-                                                                    Lo abriste
-                                                                </div>
-                                                                <div id="cdt-aval-groups-value">
-                                                                    12 de
-                                                                    <font class="groups-value-weigth">Abril</font>
-                                                                    de 2022
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto me-2" id="cdt-aval-groups">
-                                                                <div id="cdt-aval-groups-ttile">
-                                                                    Se vence
-                                                                </div>
-                                                                <div id="cdt-aval-groups-value">
-                                                                    12 de
-                                                                    <font class="groups-value-weigth">Abril</font>
-                                                                    de 2022
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto me-2" id="cdt-aval-groups">
-                                                                <div id="cdt-aval-groups-ttile">
-                                                                    Plazo
-                                                                </div>
-                                                                <div id="cdt-aval-groups-value">
-                                                                    <font class="groups-value-weigth">12</font> días
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-auto me-2" id="cdt-aval-groups" >
-                                                                <div id="cdt-aval-groups-ttile">
-                                                                    Tasa
-                                                                </div>
-                                                                <div id="cdt-aval-groups-value">
-                                                                    7%
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-auto" id="cdt-aval-groups" >
-                                                                <div id="cdt-aval-groups-ttile">
-                                                                    Intereses
-                                                                </div>
-                                                                <div id="cdt-aval-groups-value">
-                                                                    $ 2’160.000
-                                                                </div>
+                                                    <div class="col-3 px-0 border-left-cdts ps-3 align-content-center">
+                                                        <div id="cdt-detail-download">
+                                                            <div id="cdt-download-button">
+                                                                <font>
+                                                                    <a href="https://dev-nicolas-deceval-bucket.s3.amazonaws.com/17.pdf?AWSAccessKeyId=ASIAR3IJMZR5OMBXYEEO&Signature=FY6yU5awKYmKvDPh5effOrnk1hQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEC4aCXVzLWVhc3QtMSJHMEUCIEdHOUYhj7kwIg%2BClfkklnzorN4RfCIvuapXjvPwkF86AiEAq%2B4SdHNCRuS2wAp8rK%2BMlVfZLjfX8xvYs%2FD5mkIQ9uYquwII5v%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwxMjcyNTgxMTkyOTAiDOvYV7sidk6na9do2iqPAgvML6NfLpe45DLIDukzb0aj3wuu%2B5GBm7e8xkYX2t8oG857a%2B6h0FnIiZMjKBrRgPXqIt9Hvk7TFRQRMJqtAa5FJ5eDMkS81PaU776zoEhuCbItUjRfWvjratIvKiYTWnP%2FviHb8tyyIuYKiJI6TBZOFoNvKZaQSNcTOgFjRF9z2xhTll%2BHCV%2FCjK%2FaQiTzQBwQoDPzE6EBhJQnvBGMW2XwHphMMZiG2Z%2FgAliHfusA7tPZwMtX6oUxIzCYiH9rNJKV67cDwAigUmxoI56%2B2lulGAt06I9chSBar3hEw1jgudBCbzvCjsS62%2Fpp7HvXo1LnPh%2FNq53OdBj0UzzopNnmb6NMquRyPON%2Fg%2FnE2J8w2%2BWtkwY6mgFMXBY32py9YjedYPBY5G0zAduRVe%2Fgcqn%2BQVo0J97nD7CEuaT%2FS3ERFG4MOhSlW90RRb2B6UIfmgETEotpG5vrhg8bX6MU7obXdnz8L6YHkwzSXaiegqgspvFav0o6ztP7JCqCq31TlbgfAqcS8Y%2FN0YGBQB8RZZZlrqbtW922SAK%2F9RSH1d0WPwPOgF2CCGjZ7xL%2Fkb9MtvTQ&Expires=1651209824">
+                                                                        <button> Descargar Certificado </button>
+                                                                    </a>
+                                                                </font>
                                                             </div>
     
+                                                            <div id="cdt-download-button" class="mt-2" (click)="GraficaInfo(cdt.id);">
+                                                                <font>
+                                                                    <a>
+                                                                        <button> Más información  </button>
+                                                                    </a>
+                                                                </font>
+                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-3 px-0 border-left-cdts ps-3 align-content-center">
-                                                    <div id="cdt-detail-download">
-                                                        <div id="cdt-download-button">
-                                                            <font>
-                                                                <a>
-                                                                    <button> Descargar Deceval </button>
-                                                                </a>
+                                                <div id="cdt-user-detail-footer" class="p-0">
+                                                    <div id="cdt-footer-flex" class="row align-items-center p-3">
+                                                        <div id="" class="fs-5 col-3 ps-0 text-start">
+                                                            <i class="far fa-clock"></i> Faltan:
+                                                            <font class="cdt-footer-weigth">{{ moment(cdt.date_expiration).diff(fechaActual, 'days') }} días</font>
+                                                        </div>
+                                                        <div class="fs-5 col-3 ps-0 text-end">
+                                                            <i class="bi bi-alarm"></i> Configurar alerta
+                                                        </div>
+                                                        <div class="col-6 text-end pe-0">
+                                                            <i class="fs-5 fas fa-coins puntaje-lvl"></i> Al final recibirás
+                                                            <font class="cdt-footer-weigth fs-3 ps-2">
+                                                                <b class="puntaje-lvl">
+                                                                    <span *ngIf="controlMontos == false">
+                                                                        ***
+                                                                    </span>
+                                                                    <span *ngIf="controlMontos == true">
+                                                                        ${{ separadorMiles(cdt.roi)  }}
+                                                                    </span>
+                                                                </b>
                                                             </font>
                                                         </div>
-
-                                                        <div id="cdt-download-button" class="mt-2">
-                                                            <font>
-                                                                <a>
-                                                                    <button> Más información  </button>
-                                                                </a>
-                                                            </font>
+                                                    </div>
+                                                    <div id="infoCDT_{{cdt.id}}" style="display: none;" class="row align-items-center bg-white px-3 pt-3 pb-5 position-relative">
+                                                        <div class="col-9 ps-0">
+                                                                <span class="position-absolute text-secondary fw-bold ocultarGrafica" (click)="OcultarGrafica(cdt.id);">
+                                                                    Ocultar 
+                                                                </span>
+                                                                <div *ngIf="Grafica == false" class="fw-bold fs-6">
+                                                                    <p class="text-center b-name-title">
+                                                                        Envia el código de verificación para ver la gráfica
+                                                                    </p>
+                                                                </div>
+                                                                <div  *ngIf="Grafica == true" class="grafica w-100 mt-4 mb-4" id="grafica_cdt_{{cdt.id}}">
+                                                                    <div class="d-flex h-100">
+                                                                        <div class="col-2 line-y h-100 px-0 d-grid align-items-end position-relative">
+                                                                            <div class="montoInicial fw-bold b-name-title hy-line-grap-10 position-absolute">
+                                                                                ${{separadorMiles(cdt.amount)}}
+                                                                            </div>
+                                                                            <div class="montoFinal fw-bold b-name-title hy-line-grap-90 position-absolute mb-3">
+                                                                                ${{separadorMiles(cdt.roi)}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-10 line-x px-0 position-relative d-grid align-items-end">
+                                                                            <canvas id="linea1" class="w-100 h-100 position-absolute">Su navegador no soporta canvas :( </canvas>
+                                                                            <div class="position-absolute h-100 w-100 line-final">
+                                                                                
+                                                                            </div>
+                                                            
+                                                                            <div id="line-date" class="position-absolute line-final-hoy">
+                                                                                <div class="puntoCalculo"></div>
+                                                                                <div class="mensajeCalculo">
+                                                                                    Hasta el día de hoy llevas acumulados: <br>
+                                                                                    <span class="gananciaHoy fs-5" [innerText]=""></span> 
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row w-100 px-0 mx-0">
+                                                                        <div class="col-2 px-0"></div>
+                                                                        <div class="col-10 px-0 ">
+                                                                            <div class="row justify-content-between">
+                                                                                <div class="col-auto ps-0 nameFechas mt-1 fw-bold b-name-title  text-center">
+                                                                                    {{ FechaLetras(cdt.date_open, 1) }} /
+                                                                                    <font class="groups-value-weigth">{{ FechaLetras(cdt.date_open, 2) | slice:0:3  }}</font> 
+                                                                                    / {{ FechaLetras(cdt.date_open, 3) }}
+                                                                                </div>
+                                                                
+                                                                                <div class="col-auto nameFechas mt-1 fw-bold  b-name-title text-center">
+                                                                                    
+                                                                                </div>
+                                                                
+                                                                                <div class="col-auto pe-0 nameFechas mt-1 fw-bold b-name-title  text-center">
+                                                                                    {{ FechaLetras(cdt.date_expiration, 1) }} /
+                                                                                    <font class="groups-value-weigth">{{ FechaLetras(cdt.date_expiration, 2) | slice:0:3  }}</font> 
+                                                                                    / {{ FechaLetras(cdt.date_expiration, 3) }}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                         </div>
-                                                        
+                                                        <div class="col-3 ps-1 pe-0">
+                                                            <div id="cdt-download-button" class="mt-2">
+                                                                <font>
+                                                                    <a>
+                                                                        <button> Abrir un CDT  </button>
+                                                                    </a>
+                                                                </font>
+                                                            </div>
+    
+                                                            <div id="cdt-download-button" class="mt-2">
+                                                                <font>
+                                                                    <a>
+                                                                        <button> Añadir dinero  </button>
+                                                                    </a>
+                                                                </font>
+                                                            </div>
+    
+                                                            <div id="cdt-download-button" class="mt-2">
+                                                                <font>
+                                                                    <a>
+                                                                        <button> Configurar retiro  </button>
+                                                                    </a>
+                                                                </font>
+                                                            </div>
+    
+                                                            <div id="cdt-download-config">
+                                                                Tienes una emergencia, consulta <a style="cursor:pointer;">cdt flexible</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="cdt-user-detail-footer" class="p-0">
-                                                <div id="cdt-footer-flex" class="row align-items-center p-3">
-                                                    <div id="" class="fs-5 col-3 ps-0 text-start">
-                                                        <i class="far fa-clock"></i> Faltan:
-                                                        <font class="cdt-footer-weigth">17 días</font>
-                                                    </div>
-                                                    <div class="fs-5 col-3 ps-0 text-end">
-                                                        <i class="bi bi-alarm"></i> Configurar alerta
-                                                    </div>
-                                                    <div class="col-6 text-end pe-0">
-                                                        <i class="fs-5 fas fa-coins puntaje-lvl"></i> Al final recibirás
-                                                        <font class="cdt-footer-weigth fs-3 ps-2">
-                                                            <b class="puntaje-lvl">$10.000.000</b>
-                                                        </font>
-                                                    </div>
-                                                </div>
-                                                <div class="row align-items-center bg-white px-3 pb-3">
-                                                    <div class="col-9 ps-0">
-                                                        <div class="chart-wrapper">
-                                                            <canvas baseChart [data]="salesData" [type]="'line'" [options]="chartOptions"></canvas>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-3 ps-1 pe-0">
-                                                        <div id="cdt-download-button" class="mt-2">
-                                                            <font>
-                                                                <a>
-                                                                    <button> Abrir un CDT  </button>
-                                                                </a>
-                                                            </font>
-                                                        </div>
-
-                                                        <div id="cdt-download-button" class="mt-2">
-                                                            <font>
-                                                                <a>
-                                                                    <button> Añadir dinero  </button>
-                                                                </a>
-                                                            </font>
-                                                        </div>
-
-                                                        <div id="cdt-download-button" class="mt-2">
-                                                            <font>
-                                                                <a>
-                                                                    <button> Configurar retiro  </button>
-                                                                </a>
-                                                            </font>
-                                                        </div>
-
-                                                        <div id="cdt-download-config">
-                                                            Tienes una emergencia, consulta <a style="cursor:pointer;">cdt flexible</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+    
+                                            
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -363,7 +451,7 @@
 					<i class="fas fa-times"></i>
 				</button>
             </div>
-            <form [formGroup]="codeVerForm">
+            <form>
                 <div class="modal-body">
                     <label for="">Escribe el código de verificación</label>
                     <input type="text" class="form-control" placeholder="Puedes escribirlo aquí" formControlName="sns_code">

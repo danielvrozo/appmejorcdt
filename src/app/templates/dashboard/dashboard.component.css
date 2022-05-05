@@ -7,6 +7,17 @@ body {
     background: #f3f4f4;
 }
 
+.ocultarGrafica{
+    top: 3%;
+    left: 1%;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.mensajeApi{
+    font-size: 13px;
+}
+
 .border-left-cdts{
     border-left: 1px dotted #1731b1;
 }
@@ -243,7 +254,7 @@ div#panel-user-header-nav {
 
 div#panel-cdt {
     display: grid;
-    padding: 2% 5% 2% 7%;
+    padding: 2% 4% 2% 4%;
 }
 
 div#contenedores-panel-cdt-flex {
@@ -1085,4 +1096,68 @@ div#cdt-footer-total {
 
 font.cdt-footer-weigth {
     font-weight: 900;
+}
+
+
+.grafica{
+    height: 250px;
+    margin:auto;
+}
+.line-y{border-right: 1px solid #142cb1;}
+.line-x{border-bottom: 1px solid #142cb1;}
+.lx-0{left: 0%;}
+.lx-45{left: 45%;}
+.lx-95{left: 95%;}
+
+.montoFinal{
+    right: 12%;
+    top: 0;
+}
+.montoInicial {
+    right: 12%;
+    bottom: 0%;
+}
+.nameFechas{
+    font-size: 12px;
+}
+.line-final{
+    background-image: url("../../../assets/images/fondo-cuadricula.png");
+    background-repeat: round;
+    background-size: 100%;
+    opacity: 0.2;
+}
+.line-final-hoy{
+    border-top: 1px dotted rgb(20 44 177);
+    border-right: 1px dotted rgb(20 44 177);
+    background: #142cb11f;
+    cursor: crosshair;
+}
+.puntoCalculo{
+    cursor: crosshair;
+    background: rgb(20 44 177);
+    position: absolute;
+    right: -4%;
+    top: -9%;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    z-index: 2;
+}
+.line-final-hoy:hover .mensajeCalculo{
+    visibility: visible;
+}
+.mensajeCalculo{
+    visibility: hidden;
+    word-break: break-all;
+    z-index: 1;
+    position: absolute;
+    font-size: 12px;
+    top: 8%;
+    right: 5%;
+    background: rgb(20 44 177);
+    color: white;
+    font-weight: bold;
+    padding: 5px 5px 5px 8px;
+    width: 91%;
+    border-radius: 7px;
 }

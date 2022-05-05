@@ -6,7 +6,6 @@ body {
     font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
-
 .margin-left-alert {
     margin-left: -100%;
 }
@@ -240,8 +239,8 @@ div#logo-image-right img {
 div#logo-image-right {
     position: absolute;
     left: 10%;
-    top: 6%;
-    width: 40%;
+    top: 3%;
+    width: 30%;
 }
 
 div#desing-image-cuadrado img {
@@ -320,7 +319,7 @@ div#circulo-bottom-cortado-image-right {
 }
 
 div#info-code {
-    width: 83%;
+    width: 65%;
     margin-bottom: 3%;
     color: #989898;
     font-size: 16px;
