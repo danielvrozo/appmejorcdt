@@ -7,6 +7,42 @@ body {
     background: #f3f4f4;
 }
 
+.info-user-data{
+    word-break: break-all;
+}
+
+.avatarUser{
+    border: 3px solid #142cb1;
+    height: 100px;
+    width: auto;
+    object-fit: cover;
+}
+
+.documentoUser {
+    background: #e2e4f2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 70px;
+    word-break: break-word;
+    font-size: 15px;
+    display: grid;
+    align-items: center;
+}
+
+.btnUserInfo{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.bgGray50{
+    background-color: #f0f0f0;
+}
+
+.btnCloseUser{
+    right: 12px;
+    top: 12px;
+}
+
 .ocultarGrafica{
     top: 3%;
     left: 1%;

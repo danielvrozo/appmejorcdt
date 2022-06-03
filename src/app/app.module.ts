@@ -34,6 +34,7 @@ import { NgChartsModule } from 'ng2-charts';
     FormsModule,
     HttpClientModule,
     LayoutModule,
+    
     NgxIntlTelInputModule,
     NgOtpInputModule,
     NgChartsModule 

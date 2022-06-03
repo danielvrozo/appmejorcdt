@@ -10,6 +10,7 @@ import { NgOtpInputComponent, NgOtpInputConfig } from 'ng-otp-input';
 import {  BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
 import * as moment from 'moment';
 
+
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
@@ -160,6 +161,8 @@ export class DashboardComponent implements OnInit {
     return this.api
       .getUserInfo(this.jsonInfoApi, idTokenUser)
       .subscribe((data: any) => {
+       
+        console.log(data);
         if (localStorage.getItem("codigoVerificado") == "true") {
           this.controlMontos = true;
           this.Grafica = true;
@@ -239,11 +242,11 @@ export class DashboardComponent implements OnInit {
   //Todo este código para abajo es del modal Bootstrap
   closeResult!: string;
 
-  open(content: any) {
+  open(content: any, size: any) {
     this.modal
-      .open(content, {
+      .open(content,  {
         centered: true,
-        size: "sm",
+        size: size,
         animation: true,
         ariaLabelledBy: "modal-basic-title",
         windowClass: "modal-holder",

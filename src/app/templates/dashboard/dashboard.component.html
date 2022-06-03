@@ -47,6 +47,94 @@
             </div>
         </div>
         <div id="panel-cdt">
+            <ng-template #modalDatosUser let-modal>
+                <div class="row">
+                    <div class="col-3 px-0">
+                        <div class="main-data-user" class="bgGray50 fw-bold text-strat p-3 b-name-title">
+                            Mis datos básicos
+                        </div>
+                    </div>
+
+                    <div class="col-9 px-3 py-4 bgGray50 position-relative">
+                        <button type="button" class="close px-3 position-absolute fw-bold border-0 bgColorThema text-white rounded-2 btnCloseUser" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            Cerrar <i class="fas fa-times"></i>
+                        </button>
+
+                        <div class="row align-items-center">
+                            <div class="col-4 text-center">
+                                <div class="avatar text-center mb-3">
+                                    <img class="rounded-circle avatarUser" src="../../../assets/login/Iconos/images/item-animals/cheetah-svg.svg" alt="">
+                                </div>
+    
+                                <div class="info-user-data mb-3">
+                                    <h5 class="fs-5 fw-bold b-name-title">Nombre </h5>
+                                    <p>Daniel Vega</p>
+                                </div>
+                                <div class="info-user-data mb-3">
+                                    <h5 class="fs-5 fw-bold b-name-title">Celuco </h5>
+                                    <p>+573006306922</p>
+                                </div>
+
+                                <div class="info-user-data mb-3">
+                                    <h5 class="fs-5 fw-bold b-name-title">Correo </h5>
+                                    <p>danielvegarozo99@gmail.com</p>
+                                </div>
+                               
+                            </div>
+    
+                            <div class="col-8 border-start">
+
+                                <h5 class="fw-bold b-name-title mb-3">Tus documentos:</h5>
+                                <div class="row align-items-center">
+    
+                                    <div class="col-4 mb-3 ps-0">
+                                        <div class=" text-center lh-1 px-2 py-3 documentoUser fw-bold">
+                                            Cédula de ciudadania
+                                        </div>
+
+                                        <button class="w-100 border-0 text-white bgColorThema fw-bold py-2 btnUserInfo">Descargar</button>
+                                    </div>
+    
+                                    <div class="col-4 mb-3">
+                                        <div class=" text-center lh-1 px-2 py-3 documentoUser fw-bold">
+                                            Declaración de renta
+                                        </div>
+
+                                        <button class="w-100 border-0 text-white bgColorThema fw-bold py-2 btnUserInfo">Descargar</button>
+                                    </div>
+
+                                    <div class="col-4 mb-3 pe-0">
+                                        <div class=" text-center lh-1 px-2 py-3 documentoUser fw-bold">
+                                            Formato vinculación
+                                        </div>
+
+                                        <button class="w-100 border-0 text-white bgColorThema fw-bold py-2 btnUserInfo">Descargar</button>
+                                    </div>
+    
+                                    <div class="col-4 mb-3 ps-0">
+                                        <div class=" text-center lh-1 px-2 py-3 documentoUser fw-bold">
+                                            Rut
+                                        </div>
+
+                                        <button class="w-100 border-0 text-white bgColorThema fw-bold py-2 btnUserInfo">Descargar</button>
+                                    </div>
+
+                                    <div class="col-4 mb-3 ">
+                                        <div class=" text-center lh-1 px-2 py-3 documentoUser fw-bold">
+                                            Soporte de deposito
+                                        </div>
+
+                                        <button class="w-100 border-0 text-white bgColorThema fw-bold py-2 btnUserInfo">Descargar</button>
+                                    </div>
+
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </ng-template>
 
             <ng-template #mymodal let-modal>
                 <div class="modal-header">
@@ -111,7 +199,7 @@
                                 <font class="fs-4" *ngIf="controlMontos == true">${{separadorMiles(totalInvertido)}}</font>
                             </div>
                             <div id="perfil-update-data">
-                                <a style="cursor:pointer;" class="fs-5">Tus datos</a>
+                                <a style="cursor:pointer;" class="fs-5" (click)="open(modalDatosUser, 'lg')">Tus datos</a>
                             </div>
                         </div>
                         <div id="info-perfil-cortador" class="divBottom"></div>
@@ -193,7 +281,7 @@
                             Para
                             <font class="color-template fw-bold">proteger tu información</font>,hemos ocultado los valores de montos de inversión. Tranquilo, si quieres verlos sólo necesitamos hacer una segunda verificacion con un código que enviaremos a tu e-mail registrado.
                             <form action="" (ngSubmit)="EnviarCodigoVerificacion()">
-                                <button type="submit" (click)="open(mymodal)">Enviar código de verificación</button>
+                                <button type="submit" (click)="open(mymodal, 'sm')">Enviar código de verificación</button>
                             </form>
                         </div>
                     </div>
